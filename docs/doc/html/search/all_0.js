@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['addvar',['addVar',['../classVariableList.html#a69e0e071a2dedf2f0af1225889a281f1',1,'VariableList']]]
+  ['addelement',['addElement',['../classDetailedList.html#aed40208f4a912b1ecfd3eba7ea2c9233',1,'DetailedList']]]
 ];

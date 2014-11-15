@@ -1,0 +1,97 @@
+\hypertarget{classDetailedList}{\section{Detailed\+List Class Reference}
+\label{classDetailedList}\index{Detailed\+List@{Detailed\+List}}
+}
+
+
+A list widget with details when you click on the title line.  
+
+
+Inheritance diagram for Detailed\+List\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classDetailedList}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classDetailedList_ad425c5bda6ca07fceee56f1df6ae2cf5}{void {\bfseries D\+E\+B\+U\+Gadd\+New\+Var} ()}\label{classDetailedList_ad425c5bda6ca07fceee56f1df6ae2cf5}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDetailedList_a82c17dba7dd2bc10317a3b9953cf8943}{Detailed\+List} (Q\+Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classDetailedList_aed40208f4a912b1ecfd3eba7ea2c9233}{add\+Element} (Q\+String title, Q\+String content, bool expanded=true)
+\begin{DoxyCompactList}\small\item\em Add a new element to the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classDetailedList_ad74533c0c6d052007dc282d5b69b83e1}{item\+Clicked} (Q\+List\+Widget\+Item $\ast$clicked)
+\begin{DoxyCompactList}\small\item\em Slot triggered when a click is made on an item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A list widget with details when you click on the title line with a triangle or an arrow that indicate current state. Each element is composed by to Q\+List\+Widget\+Item \+: title and content.
+
+{\bfseries Warning} \+: As each element is indexed by the title name, it has to be unique. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classDetailedList_a82c17dba7dd2bc10317a3b9953cf8943}{\index{Detailed\+List@{Detailed\+List}!Detailed\+List@{Detailed\+List}}
+\index{Detailed\+List@{Detailed\+List}!Detailed\+List@{Detailed\+List}}
+\subsubsection[{Detailed\+List}]{\setlength{\rightskip}{0pt plus 5cm}Detailed\+List\+::\+Detailed\+List (
+\begin{DoxyParamCaption}
+\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{classDetailedList_a82c17dba7dd2bc10317a3b9953cf8943}
+Construct an empty \hyperlink{classDetailedList}{Detailed\+List} with the given {\itshape parent}
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classDetailedList_aed40208f4a912b1ecfd3eba7ea2c9233}{\index{Detailed\+List@{Detailed\+List}!add\+Element@{add\+Element}}
+\index{add\+Element@{add\+Element}!Detailed\+List@{Detailed\+List}}
+\subsubsection[{add\+Element}]{\setlength{\rightskip}{0pt plus 5cm}void Detailed\+List\+::add\+Element (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{title, }
+\item[{Q\+String}]{content, }
+\item[{bool}]{expanded = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{classDetailedList_aed40208f4a912b1ecfd3eba7ea2c9233}
+Add a new element to the list
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Plain text title that is allways visible \\
+\hline
+{\em content} & Rich text content that will be visible when the user click on the line \\
+\hline
+{\em expanded} & Choose if the new element will be expanded or not \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDetailedList_ad74533c0c6d052007dc282d5b69b83e1}{\index{Detailed\+List@{Detailed\+List}!item\+Clicked@{item\+Clicked}}
+\index{item\+Clicked@{item\+Clicked}!Detailed\+List@{Detailed\+List}}
+\subsubsection[{item\+Clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Detailed\+List\+::item\+Clicked (
+\begin{DoxyParamCaption}
+\item[{Q\+List\+Widget\+Item $\ast$}]{clicked}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}}\label{classDetailedList_ad74533c0c6d052007dc282d5b69b83e1}
+Slot triggered when a click is made on an item. This is used to expand and reduce elements when you click on a title.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clicked} & A pointer to the clicked item \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/bob/dev/utt-\/nf05-\/project/sources/detailedlist.\+hpp\item 
+/home/bob/dev/utt-\/nf05-\/project/sources/detailedlist.\+cpp\end{DoxyCompactItemize}

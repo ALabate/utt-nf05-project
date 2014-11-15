@@ -7,16 +7,18 @@
 
 var indexSectionsWithContent =
 {
-  0: "amv",
-  1: "mv",
-  2: "av"
+  0: "adimp",
+  1: "dm",
+  2: "adi",
+  3: "p"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "functions"
+  2: "functions",
+  3: "pages"
 };
 
 function convertToId(search)
