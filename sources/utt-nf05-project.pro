@@ -14,9 +14,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    variablelist.cpp
+    detailedlist.cpp
 
 HEADERS  += mainwindow.hpp \
-    variablelist.hpp
+    detailedlist.hpp
 
 FORMS    += mainwindow.ui
