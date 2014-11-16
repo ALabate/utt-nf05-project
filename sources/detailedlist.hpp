@@ -100,7 +100,7 @@ class DetailedList : public QListWidget
 		/**
 		* @brief Slot triggered when a click is made on the delete button of the context menu
 		*
-		* Slot triggered when a click is made on the delete button of the context menu. This will emit the but public elementDeleted signal and then remove the element from the list.
+		* Slot triggered when a click is made on the delete button of the context menu. This will emit the but public elementDeleted() signal and then remove the element from the list.
 		*/
 		void deleteTriggered();
 

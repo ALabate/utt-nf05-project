@@ -92,40 +92,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QListWidget&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QLabel&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QDateTime&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classDetailedList.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDetailedList.html">DetailedList</a> : <span class="keyword">public</span> QListWidget</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{   </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        Q_OBJECT</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classDetailedList.html#a82c17dba7dd2bc10317a3b9953cf8943">DetailedList</a>(QWidget *parent = 0);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDetailedList.html#aed40208f4a912b1ecfd3eba7ea2c9233">addElement</a>(QString title, QString content, <span class="keywordtype">bool</span> expanded = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">protected</span> slots:</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDetailedList.html#ad74533c0c6d052007dc282d5b69b83e1">itemClicked</a>(QListWidgetItem* clicked);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        QMultiMap&lt;QString, QListWidgetItem*&gt; list;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="comment">//Debug menu:</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> DEBUGaddNewVar();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;};</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif // DETAILEDLIST_HPP</span></div>
-<div class="ttc" id="classDetailedList_html_aed40208f4a912b1ecfd3eba7ea2c9233"><div class="ttname"><a href="classDetailedList.html#aed40208f4a912b1ecfd3eba7ea2c9233">DetailedList::addElement</a></div><div class="ttdeci">void addElement(QString title, QString content, bool expanded=true)</div><div class="ttdoc">Add a new element to the list. </div><div class="ttdef"><b>Definition:</b> detailedlist.cpp:21</div></div>
-<div class="ttc" id="classDetailedList_html_ad74533c0c6d052007dc282d5b69b83e1"><div class="ttname"><a href="classDetailedList.html#ad74533c0c6d052007dc282d5b69b83e1">DetailedList::itemClicked</a></div><div class="ttdeci">void itemClicked(QListWidgetItem *clicked)</div><div class="ttdoc">Slot triggered when a click is made on an item. </div><div class="ttdef"><b>Definition:</b> detailedlist.cpp:54</div></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;QMenu&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;QDebug&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classDetailedList.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDetailedList.html">DetailedList</a> : <span class="keyword">public</span> QListWidget</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{   </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classDetailedList.html#a82c17dba7dd2bc10317a3b9953cf8943">DetailedList</a>(QWidget *parent = 0);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDetailedList.html#aed40208f4a912b1ecfd3eba7ea2c9233">addElement</a>(QString title, QString content, <span class="keywordtype">bool</span> expanded = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDetailedList.html#a9dc4572da2e70fb893740b3ed9dc0b40">deleteElement</a>(QString title);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDetailedList.html#abbe080f0713ea7c73839573968a1fb3c">UpdateElement</a>(QString title, QString content);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDetailedList.html#a507c96247c3b608b357601e8a0acc4ac">expandElement</a>(QString title, <span class="keywordtype">bool</span> expand = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">protected</span> slots:</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDetailedList.html#ad74533c0c6d052007dc282d5b69b83e1">itemClicked</a>(QListWidgetItem* clicked);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDetailedList.html#a63b30f2064f52c9d0b568a04d56d8d84">customContextMenuRequested</a>(<span class="keyword">const</span> QPoint&amp; pos);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDetailedList.html#a1d81cd6c44e33ac95e2bce496e88574a">deleteTriggered</a>();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        QListWidgetItem* contextMenuOrigin;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        QMultiMap&lt;QString, QListWidgetItem*&gt; list;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    signals:</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDetailedList.html#afc406b69efa74f6c03ab0486dc21df67">elementDeleted</a>(QString title);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;};</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif // DETAILEDLIST_HPP</span></div>
+<div class="ttc" id="classDetailedList_html_afc406b69efa74f6c03ab0486dc21df67"><div class="ttname"><a href="classDetailedList.html#afc406b69efa74f6c03ab0486dc21df67">DetailedList::elementDeleted</a></div><div class="ttdeci">void elementDeleted(QString title)</div><div class="ttdoc">Signal emitted when the user delete an element. </div></div>
+<div class="ttc" id="classDetailedList_html_aed40208f4a912b1ecfd3eba7ea2c9233"><div class="ttname"><a href="classDetailedList.html#aed40208f4a912b1ecfd3eba7ea2c9233">DetailedList::addElement</a></div><div class="ttdeci">void addElement(QString title, QString content, bool expanded=true)</div><div class="ttdoc">Add a new element to the list. </div><div class="ttdef"><b>Definition:</b> detailedlist.cpp:14</div></div>
+<div class="ttc" id="classDetailedList_html_ad74533c0c6d052007dc282d5b69b83e1"><div class="ttname"><a href="classDetailedList.html#ad74533c0c6d052007dc282d5b69b83e1">DetailedList::itemClicked</a></div><div class="ttdeci">void itemClicked(QListWidgetItem *clicked)</div><div class="ttdoc">Slot triggered when a click is made on an item. </div><div class="ttdef"><b>Definition:</b> detailedlist.cpp:96</div></div>
+<div class="ttc" id="classDetailedList_html_a63b30f2064f52c9d0b568a04d56d8d84"><div class="ttname"><a href="classDetailedList.html#a63b30f2064f52c9d0b568a04d56d8d84">DetailedList::customContextMenuRequested</a></div><div class="ttdeci">void customContextMenuRequested(const QPoint &amp;pos)</div><div class="ttdoc">Slot triggered when a right click is made. </div><div class="ttdef"><b>Definition:</b> detailedlist.cpp:107</div></div>
+<div class="ttc" id="classDetailedList_html_a1d81cd6c44e33ac95e2bce496e88574a"><div class="ttname"><a href="classDetailedList.html#a1d81cd6c44e33ac95e2bce496e88574a">DetailedList::deleteTriggered</a></div><div class="ttdeci">void deleteTriggered()</div><div class="ttdoc">Slot triggered when a click is made on the delete button of the context menu. </div><div class="ttdef"><b>Definition:</b> detailedlist.cpp:124</div></div>
+<div class="ttc" id="classDetailedList_html_abbe080f0713ea7c73839573968a1fb3c"><div class="ttname"><a href="classDetailedList.html#abbe080f0713ea7c73839573968a1fb3c">DetailedList::UpdateElement</a></div><div class="ttdeci">void UpdateElement(QString title, QString content)</div><div class="ttdoc">Update an element from the list. </div><div class="ttdef"><b>Definition:</b> detailedlist.cpp:62</div></div>
 <div class="ttc" id="classDetailedList_html_a82c17dba7dd2bc10317a3b9953cf8943"><div class="ttname"><a href="classDetailedList.html#a82c17dba7dd2bc10317a3b9953cf8943">DetailedList::DetailedList</a></div><div class="ttdeci">DetailedList(QWidget *parent=0)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> detailedlist.cpp:3</div></div>
-<div class="ttc" id="classDetailedList_html"><div class="ttname"><a href="classDetailedList.html">DetailedList</a></div><div class="ttdoc">A list widget with details when you click on the title line. </div><div class="ttdef"><b>Definition:</b> detailedlist.hpp:8</div></div>
+<div class="ttc" id="classDetailedList_html_a9dc4572da2e70fb893740b3ed9dc0b40"><div class="ttname"><a href="classDetailedList.html#a9dc4572da2e70fb893740b3ed9dc0b40">DetailedList::deleteElement</a></div><div class="ttdeci">void deleteElement(QString title)</div><div class="ttdoc">Delete an element from the list. </div><div class="ttdef"><b>Definition:</b> detailedlist.cpp:50</div></div>
+<div class="ttc" id="classDetailedList_html_a507c96247c3b608b357601e8a0acc4ac"><div class="ttname"><a href="classDetailedList.html#a507c96247c3b608b357601e8a0acc4ac">DetailedList::expandElement</a></div><div class="ttdeci">void expandElement(QString title, bool expand=true)</div><div class="ttdoc">Expand or reduce an element of the list. </div><div class="ttdef"><b>Definition:</b> detailedlist.cpp:75</div></div>
+<div class="ttc" id="classDetailedList_html"><div class="ttname"><a href="classDetailedList.html">DetailedList</a></div><div class="ttdoc">A list widget with details when you click on the title line. </div><div class="ttdef"><b>Definition:</b> detailedlist.hpp:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 15 2014 17:20:57 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 16 2014 15:40:28 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

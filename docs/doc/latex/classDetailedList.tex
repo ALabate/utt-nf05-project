@@ -12,30 +12,39 @@ Inheritance diagram for Detailed\+List\+:\begin{figure}[H]
 \includegraphics[height=2.000000cm]{classDetailedList}
 \end{center}
 \end{figure}
-\subsection*{Public Slots}
+\subsection*{Signals}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classDetailedList_ad425c5bda6ca07fceee56f1df6ae2cf5}{void {\bfseries D\+E\+B\+U\+Gadd\+New\+Var} ()}\label{classDetailedList_ad425c5bda6ca07fceee56f1df6ae2cf5}
-
-\end{DoxyCompactItemize}
+void \hyperlink{classDetailedList_afc406b69efa74f6c03ab0486dc21df67}{element\+Deleted} (Q\+String title)
+\begin{DoxyCompactList}\small\item\em Signal emitted when the user delete an element. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classDetailedList_a82c17dba7dd2bc10317a3b9953cf8943}{Detailed\+List} (Q\+Widget $\ast$parent=0)
 \begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
 void \hyperlink{classDetailedList_aed40208f4a912b1ecfd3eba7ea2c9233}{add\+Element} (Q\+String title, Q\+String content, bool expanded=true)
-\begin{DoxyCompactList}\small\item\em Add a new element to the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Add a new element to the list. \end{DoxyCompactList}\item 
+void \hyperlink{classDetailedList_a9dc4572da2e70fb893740b3ed9dc0b40}{delete\+Element} (Q\+String title)
+\begin{DoxyCompactList}\small\item\em Delete an element from the list. \end{DoxyCompactList}\item 
+void \hyperlink{classDetailedList_abbe080f0713ea7c73839573968a1fb3c}{Update\+Element} (Q\+String title, Q\+String content)
+\begin{DoxyCompactList}\small\item\em Update an element from the list. \end{DoxyCompactList}\item 
+void \hyperlink{classDetailedList_a507c96247c3b608b357601e8a0acc4ac}{expand\+Element} (Q\+String title, bool expand=true)
+\begin{DoxyCompactList}\small\item\em Expand or reduce an element of the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Slots}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{classDetailedList_ad74533c0c6d052007dc282d5b69b83e1}{item\+Clicked} (Q\+List\+Widget\+Item $\ast$clicked)
-\begin{DoxyCompactList}\small\item\em Slot triggered when a click is made on an item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Slot triggered when a click is made on an item. \end{DoxyCompactList}\item 
+void \hyperlink{classDetailedList_a63b30f2064f52c9d0b568a04d56d8d84}{custom\+Context\+Menu\+Requested} (const Q\+Point \&pos)
+\begin{DoxyCompactList}\small\item\em Slot triggered when a right click is made. \end{DoxyCompactList}\item 
+void \hyperlink{classDetailedList_a1d81cd6c44e33ac95e2bce496e88574a}{delete\+Triggered} ()
+\begin{DoxyCompactList}\small\item\em Slot triggered when a click is made on the delete button of the context menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-A list widget with details when you click on the title line with a triangle or an arrow that indicate current state. Each element is composed by to Q\+List\+Widget\+Item \+: title and content.
+A list widget with details when you click on the title line with a triangle or an arrow that indicate current state. Each element is composed by to Q\+List\+Widget\+Item \+: title and content. The list is sorted by title alphabetical order
 
-{\bfseries Warning} \+: As each element is indexed by the title name, it has to be unique. 
+{\bfseries Warning} \+: As each element is indexed by the title, it has to be unique. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classDetailedList_a82c17dba7dd2bc10317a3b9953cf8943}{\index{Detailed\+List@{Detailed\+List}!Detailed\+List@{Detailed\+List}}
@@ -75,6 +84,72 @@ Add a new element to the list
 {\em expanded} & Choose if the new element will be expanded or not \\
 \hline
 \end{DoxyParams}
+\hypertarget{classDetailedList_a63b30f2064f52c9d0b568a04d56d8d84}{\index{Detailed\+List@{Detailed\+List}!custom\+Context\+Menu\+Requested@{custom\+Context\+Menu\+Requested}}
+\index{custom\+Context\+Menu\+Requested@{custom\+Context\+Menu\+Requested}!Detailed\+List@{Detailed\+List}}
+\subsubsection[{custom\+Context\+Menu\+Requested}]{\setlength{\rightskip}{0pt plus 5cm}void Detailed\+List\+::custom\+Context\+Menu\+Requested (
+\begin{DoxyParamCaption}
+\item[{const Q\+Point \&}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}}\label{classDetailedList_a63b30f2064f52c9d0b568a04d56d8d84}
+Slot triggered when a right click is made. This will add a context menu on elements that will allow user to delete the element.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Position of the mouse when the user right click \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDetailedList_a9dc4572da2e70fb893740b3ed9dc0b40}{\index{Detailed\+List@{Detailed\+List}!delete\+Element@{delete\+Element}}
+\index{delete\+Element@{delete\+Element}!Detailed\+List@{Detailed\+List}}
+\subsubsection[{delete\+Element}]{\setlength{\rightskip}{0pt plus 5cm}void Detailed\+List\+::delete\+Element (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{title}
+\end{DoxyParamCaption}
+)}}\label{classDetailedList_a9dc4572da2e70fb893740b3ed9dc0b40}
+Delete an element from the list
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Plain text title of the element that you want to delete \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDetailedList_a1d81cd6c44e33ac95e2bce496e88574a}{\index{Detailed\+List@{Detailed\+List}!delete\+Triggered@{delete\+Triggered}}
+\index{delete\+Triggered@{delete\+Triggered}!Detailed\+List@{Detailed\+List}}
+\subsubsection[{delete\+Triggered}]{\setlength{\rightskip}{0pt plus 5cm}void Detailed\+List\+::delete\+Triggered (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}}\label{classDetailedList_a1d81cd6c44e33ac95e2bce496e88574a}
+Slot triggered when a click is made on the delete button of the context menu. This will emit the but public \hyperlink{classDetailedList_afc406b69efa74f6c03ab0486dc21df67}{element\+Deleted()} signal and then remove the element from the list. \hypertarget{classDetailedList_afc406b69efa74f6c03ab0486dc21df67}{\index{Detailed\+List@{Detailed\+List}!element\+Deleted@{element\+Deleted}}
+\index{element\+Deleted@{element\+Deleted}!Detailed\+List@{Detailed\+List}}
+\subsubsection[{element\+Deleted}]{\setlength{\rightskip}{0pt plus 5cm}void Detailed\+List\+::element\+Deleted (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{title}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classDetailedList_afc406b69efa74f6c03ab0486dc21df67}
+Signal emitted when the user delete an element
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & The title of the deleted element \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDetailedList_a507c96247c3b608b357601e8a0acc4ac}{\index{Detailed\+List@{Detailed\+List}!expand\+Element@{expand\+Element}}
+\index{expand\+Element@{expand\+Element}!Detailed\+List@{Detailed\+List}}
+\subsubsection[{expand\+Element}]{\setlength{\rightskip}{0pt plus 5cm}void Detailed\+List\+::expand\+Element (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{title, }
+\item[{bool}]{expand = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{classDetailedList_a507c96247c3b608b357601e8a0acc4ac}
+Expand or reduce an element of the list
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Plain text title of the element that you want to update \\
+\hline
+{\em expand} & Choose if the element will be expanded or not \\
+\hline
+\end{DoxyParams}
 \hypertarget{classDetailedList_ad74533c0c6d052007dc282d5b69b83e1}{\index{Detailed\+List@{Detailed\+List}!item\+Clicked@{item\+Clicked}}
 \index{item\+Clicked@{item\+Clicked}!Detailed\+List@{Detailed\+List}}
 \subsubsection[{item\+Clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Detailed\+List\+::item\+Clicked (
@@ -87,6 +162,23 @@ Slot triggered when a click is made on an item. This is used to expand and reduc
 
 \begin{DoxyParams}{Parameters}
 {\em clicked} & A pointer to the clicked item \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDetailedList_abbe080f0713ea7c73839573968a1fb3c}{\index{Detailed\+List@{Detailed\+List}!Update\+Element@{Update\+Element}}
+\index{Update\+Element@{Update\+Element}!Detailed\+List@{Detailed\+List}}
+\subsubsection[{Update\+Element}]{\setlength{\rightskip}{0pt plus 5cm}void Detailed\+List\+::\+Update\+Element (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{title, }
+\item[{Q\+String}]{content}
+\end{DoxyParamCaption}
+)}}\label{classDetailedList_abbe080f0713ea7c73839573968a1fb3c}
+Update an element from the list
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Plain text title of the element that you want to update \\
+\hline
+{\em content} & The new content of the element \\
 \hline
 \end{DoxyParams}
 

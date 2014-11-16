@@ -82,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-slots">Public Slots</a> &#124;
+<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-slots">Protected Slots</a> &#124;
 <a href="classDetailedList-members.html">List of all members</a>  </div>
@@ -102,11 +102,11 @@ Inheritance diagram for DetailedList:</div>
 </map>
  </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
-Public Slots</h2></td></tr>
-<tr class="memitem:ad425c5bda6ca07fceee56f1df6ae2cf5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad425c5bda6ca07fceee56f1df6ae2cf5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DEBUGaddNewVar</b> ()</td></tr>
-<tr class="separator:ad425c5bda6ca07fceee56f1df6ae2cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Signals</h2></td></tr>
+<tr class="memitem:afc406b69efa74f6c03ab0486dc21df67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDetailedList.html#afc406b69efa74f6c03ab0486dc21df67">elementDeleted</a> (QString title)</td></tr>
+<tr class="memdesc:afc406b69efa74f6c03ab0486dc21df67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal emitted when the user delete an element.  <a href="#afc406b69efa74f6c03ab0486dc21df67">More...</a><br /></td></tr>
+<tr class="separator:afc406b69efa74f6c03ab0486dc21df67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -116,16 +116,31 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aed40208f4a912b1ecfd3eba7ea2c9233"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDetailedList.html#aed40208f4a912b1ecfd3eba7ea2c9233">addElement</a> (QString title, QString content, bool expanded=true)</td></tr>
 <tr class="memdesc:aed40208f4a912b1ecfd3eba7ea2c9233"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new element to the list.  <a href="#aed40208f4a912b1ecfd3eba7ea2c9233">More...</a><br /></td></tr>
 <tr class="separator:aed40208f4a912b1ecfd3eba7ea2c9233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dc4572da2e70fb893740b3ed9dc0b40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDetailedList.html#a9dc4572da2e70fb893740b3ed9dc0b40">deleteElement</a> (QString title)</td></tr>
+<tr class="memdesc:a9dc4572da2e70fb893740b3ed9dc0b40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete an element from the list.  <a href="#a9dc4572da2e70fb893740b3ed9dc0b40">More...</a><br /></td></tr>
+<tr class="separator:a9dc4572da2e70fb893740b3ed9dc0b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbe080f0713ea7c73839573968a1fb3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDetailedList.html#abbe080f0713ea7c73839573968a1fb3c">UpdateElement</a> (QString title, QString content)</td></tr>
+<tr class="memdesc:abbe080f0713ea7c73839573968a1fb3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update an element from the list.  <a href="#abbe080f0713ea7c73839573968a1fb3c">More...</a><br /></td></tr>
+<tr class="separator:abbe080f0713ea7c73839573968a1fb3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a507c96247c3b608b357601e8a0acc4ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDetailedList.html#a507c96247c3b608b357601e8a0acc4ac">expandElement</a> (QString title, bool expand=true)</td></tr>
+<tr class="memdesc:a507c96247c3b608b357601e8a0acc4ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand or reduce an element of the list.  <a href="#a507c96247c3b608b357601e8a0acc4ac">More...</a><br /></td></tr>
+<tr class="separator:a507c96247c3b608b357601e8a0acc4ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-slots"></a>
 Protected Slots</h2></td></tr>
 <tr class="memitem:ad74533c0c6d052007dc282d5b69b83e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDetailedList.html#ad74533c0c6d052007dc282d5b69b83e1">itemClicked</a> (QListWidgetItem *clicked)</td></tr>
 <tr class="memdesc:ad74533c0c6d052007dc282d5b69b83e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot triggered when a click is made on an item.  <a href="#ad74533c0c6d052007dc282d5b69b83e1">More...</a><br /></td></tr>
 <tr class="separator:ad74533c0c6d052007dc282d5b69b83e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63b30f2064f52c9d0b568a04d56d8d84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDetailedList.html#a63b30f2064f52c9d0b568a04d56d8d84">customContextMenuRequested</a> (const QPoint &amp;pos)</td></tr>
+<tr class="memdesc:a63b30f2064f52c9d0b568a04d56d8d84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot triggered when a right click is made.  <a href="#a63b30f2064f52c9d0b568a04d56d8d84">More...</a><br /></td></tr>
+<tr class="separator:a63b30f2064f52c9d0b568a04d56d8d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d81cd6c44e33ac95e2bce496e88574a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDetailedList.html#a1d81cd6c44e33ac95e2bce496e88574a">deleteTriggered</a> ()</td></tr>
+<tr class="memdesc:a1d81cd6c44e33ac95e2bce496e88574a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot triggered when a click is made on the delete button of the context menu.  <a href="#a1d81cd6c44e33ac95e2bce496e88574a">More...</a><br /></td></tr>
+<tr class="separator:a1d81cd6c44e33ac95e2bce496e88574a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A list widget with details when you click on the title line with a triangle or an arrow that indicate current state. Each element is composed by to QListWidgetItem : title and content.</p>
-<p><b>Warning</b> : As each element is indexed by the title name, it has to be unique. </p>
+<div class="textblock"><p>A list widget with details when you click on the title line with a triangle or an arrow that indicate current state. Each element is composed by to QListWidgetItem : title and content. The list is sorted by title alphabetical order</p>
+<p><b>Warning</b> : As each element is indexed by the title, it has to be unique. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a82c17dba7dd2bc10317a3b9953cf8943"></a>
 <div class="memitem">
@@ -200,6 +215,149 @@ Protected Slots</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a63b30f2064f52c9d0b568a04d56d8d84"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DetailedList::customContextMenuRequested </td>
+          <td>(</td>
+          <td class="paramtype">const QPoint &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Slot triggered when a right click is made. This will add a context menu on elements that will allow user to delete the element.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Position of the mouse when the user right click </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9dc4572da2e70fb893740b3ed9dc0b40"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DetailedList::deleteElement </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>title</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Delete an element from the list</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Plain text title of the element that you want to delete </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1d81cd6c44e33ac95e2bce496e88574a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DetailedList::deleteTriggered </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Slot triggered when a click is made on the delete button of the context menu. This will emit the but public <a class="el" href="classDetailedList.html#afc406b69efa74f6c03ab0486dc21df67" title="Signal emitted when the user delete an element. ">elementDeleted()</a> signal and then remove the element from the list. </p>
+
+</div>
+</div>
+<a class="anchor" id="afc406b69efa74f6c03ab0486dc21df67"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DetailedList::elementDeleted </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>title</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Signal emitted when the user delete an element</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>The title of the deleted element </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a507c96247c3b608b357601e8a0acc4ac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DetailedList::expandElement </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>expand</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Expand or reduce an element of the list</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Plain text title of the element that you want to update </td></tr>
+    <tr><td class="paramname">expand</td><td>Choose if the element will be expanded or not </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ad74533c0c6d052007dc282d5b69b83e1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -231,6 +389,40 @@ Protected Slots</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="abbe080f0713ea7c73839573968a1fb3c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DetailedList::UpdateElement </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>content</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Update an element from the list</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Plain text title of the element that you want to update </td></tr>
+    <tr><td class="paramname">content</td><td>The new content of the element </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/bob/dev/utt-nf05-project/sources/<a class="el" href="detailedlist_8hpp_source.html">detailedlist.hpp</a></li>
 <li>/home/bob/dev/utt-nf05-project/sources/detailedlist.cpp</li>
@@ -238,7 +430,7 @@ Protected Slots</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 15 2014 17:20:58 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 16 2014 15:40:28 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
