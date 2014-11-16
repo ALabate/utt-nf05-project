@@ -66,25 +66,21 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit">
+         <widget class="QPlainTextEdit" name="expressionEdit">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
           </property>
-          <property name="styleSheet">
-           <string notr="true">background:white;
-border:0px;</string>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
           </property>
           <property name="placeholderText">
-           <string>Enter your expression here</string>
+           <string>Entrer your expression here</string>
           </property>
          </widget>
         </item>
@@ -126,7 +122,7 @@ border:0px;</string>
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -138,24 +134,10 @@ border:0px;</string>
     <property name="title">
      <string>Debug</string>
     </property>
-    <addaction name="actionAdd_var"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuDebug"/>
   </widget>
-  <action name="actionAdd_var">
-   <property name="text">
-    <string>Add var</string>
-   </property>
-   <property name="shortcut">
-    <string>A</string>
-   </property>
-  </action>
-  <action name="actionQuit">
-   <property name="text">
-    <string>Quit</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -166,22 +148,5 @@ border:0px;</string>
   </customwidget>
  </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>actionAdd_var</sender>
-   <signal>triggered()</signal>
-   <receiver>detailedList</receiver>
-   <slot>DEBUGaddNewVar()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>330</x>
-     <y>160</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
