@@ -24,13 +24,11 @@ VarNode::VarNode(QString varName, Calculable* value)
 
 Calculable* VarNode::execute()
 {
-    qDebug() << "ici";
     if (this->value != NULL)
     {
-        qDebug() << "la";
         return this->value;
     }
-    qDebug() << "zut";
+
     return NULL;
 }
 

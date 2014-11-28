@@ -1,12 +1,15 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
+    registry(new QList<VarNode *>),
 	ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
 	//connect(ui->expressionEdit->document()->documentLayout(),SIGNAL(documentSizeChanged(QSizeF)), ui->expressionEdit, SLOT())
+    connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(eval()));
 
 	ui->detailedList->addElement("Test1","Hello\ntest");
 	ui->detailedList->addElement("Test0","Hello2\ntest",true);
@@ -23,4 +26,16 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
 	delete ui;
+}
+
+void MainWindow::eval()
+{
+    QString expression = ui->lineEdit->text();
+    Parser parser(expression, this->registry);
+    Calculable *value = parser.run();
+
+    if (value != NULL)
+    {
+        ui->textBrowser->append(QString::number(value->getValue()));
+    }
 }

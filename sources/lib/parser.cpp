@@ -101,7 +101,6 @@ Node* Parser::generateTree(QList<Token> tokens)
             QString reference = token.getValue();
 
             VarNode *varNode = VarNode::getVar(reference, this->registry);
-            qDebug() << varNode->getName();
             return varNode;
         }
         else
