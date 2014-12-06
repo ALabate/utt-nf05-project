@@ -79,4 +79,6 @@ void MainWindow::eval()
     {
         ui->textBrowser->append(QString::number(value->getValue()));
     }
+
+    ui->lineEdit->setText("");
 }
