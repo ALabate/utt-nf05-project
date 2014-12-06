@@ -7,25 +7,65 @@ MainWindow::MainWindow(QWidget *parent) :
     registry(new QList<VarNode *>),
 	ui(new Ui::MainWindow)
 {
-	ui->setupUi(this);
-	//connect(ui->expressionEdit->document()->documentLayout(),SIGNAL(documentSizeChanged(QSizeF)), ui->expressionEdit, SLOT())
+    ui->setupUi(this);
+
     connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(eval()));
-
-	ui->detailedList->addElement("Test1","Hello\ntest");
-	ui->detailedList->addElement("Test0","Hello2\ntest",true);
-	ui->detailedList->addElement("Test3","Hello3\ntest",false);
-	ui->detailedList->addElement("Test1","HelloNOPE\ntest",false);
-	ui->detailedList->addElement("Test2","Hello");
-
-	ui->detailedList->expandElement("Test0", false);
-	ui->detailedList->deleteElement("Test2");
-	ui->detailedList->UpdateElement("Test0","Updated :)");
-
+    connect(ui->detailedList, SIGNAL(elementDeleted(QString)), this, SLOT(deleteVar(QString)));
 }
 
 MainWindow::~MainWindow()
 {
 	delete ui;
+}
+
+
+void MainWindow::memorySync()
+{
+    QMultiMap<QString, QListWidgetItem*>* list = ui->detailedList->getList();
+
+    foreach (VarNode* currentVar, *(this->registry))
+    {
+        QString varName = currentVar->getName();
+
+        if (currentVar->getValue() != NULL) {
+            QString varValue = QString::number(currentVar->getValue()->getValue());
+
+            bool found = false;
+
+            foreach (QListWidgetItem* currentItem, list->values(varName))
+            {
+                QLabel* currentLabel = (QLabel*) ui->detailedList->itemWidget(currentItem);
+
+                if (currentLabel->text() != varValue)
+                {
+                    currentLabel->setText(varValue);
+                }
+
+                found = true;
+                break;
+            }
+
+            if (!found)
+            {
+                ui->detailedList->addElement(varName, varValue);
+            }
+        }
+    }
+}
+
+
+void MainWindow::deleteVar(QString varName)
+{
+    for (int i = 0; i < this->registry->length(); i++)
+    {
+        VarNode* currentNode = this->registry->at(i);
+
+        if (currentNode->getName() == varName)
+        {
+            this->registry->removeAt(i);
+            return;
+        }
+    }
 }
 
 void MainWindow::eval()
@@ -34,6 +74,7 @@ void MainWindow::eval()
     Parser parser(expression, this->registry);
     Calculable *value = parser.run();
 
+    memorySync();
     if (value != NULL)
     {
         ui->textBrowser->append(QString::number(value->getValue()));

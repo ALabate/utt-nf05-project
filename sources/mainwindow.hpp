@@ -22,10 +22,12 @@ class MainWindow : public QMainWindow
 		~MainWindow();
 
     private:
+        void memorySync();
         QList<VarNode *> *registry;
 		Ui::MainWindow *ui;
 
-    public slots:
+    private slots:
+        void deleteVar(QString varName);
         void eval();
 };
 

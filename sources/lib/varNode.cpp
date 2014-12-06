@@ -28,7 +28,6 @@ Calculable* VarNode::execute()
     {
         return this->value;
     }
-
     return NULL;
 }
 
@@ -90,6 +89,5 @@ VarNode* VarNode::getVar(QString reference, QList<VarNode *> *registry)
 
     VarNode *newNode = new VarNode(reference, NULL);
     registry->append(newNode);
-
     return newNode;
 }

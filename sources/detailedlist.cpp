@@ -11,6 +11,13 @@ DetailedList::DetailedList(QWidget *parent) :
 
 }
 
+
+QMultiMap<QString, QListWidgetItem*>* DetailedList::getList()
+{
+    return &(this->list);
+}
+
+
 void DetailedList::addElement(QString title, QString content, bool expanded)
 {
 	if(!list.contains(title))

@@ -78,6 +78,9 @@ class DetailedList : public QListWidget
 		void expandElement(QString title, bool expand = true);
 
 
+        QMultiMap<QString, QListWidgetItem*>* getList();
+
+
 	protected slots:
 		/**
 		* @brief Slot triggered when a click is made on an item
