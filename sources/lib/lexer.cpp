@@ -29,7 +29,7 @@ QList<Token> Lexer::run()
 
         if (result.getValue() == "")
         {
-            qWarning() << "Unable to parse an element.";
+            qWarning() << "Unable to parse the element, offset: " << offset;
             emit lexerError(this->source, offset);
             return tokens;
         }
