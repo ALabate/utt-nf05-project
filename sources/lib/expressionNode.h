@@ -24,6 +24,7 @@ class ExpressionNode : public Node
 
     protected:
         void convertToRPN();
+        bool isFunction(Token token);
 
         QList<Token> expression;
         Calculable *value;

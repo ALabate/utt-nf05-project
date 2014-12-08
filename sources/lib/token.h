@@ -20,7 +20,8 @@ enum TokenKind
     T_PARENTHESIS_RIGHT,
     T_STRING,
     T_MODULO,
-    T_POW
+    T_POW,
+    T_COMMA
 };
 
 

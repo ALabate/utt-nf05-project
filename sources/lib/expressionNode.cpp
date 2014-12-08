@@ -44,27 +44,40 @@ void ExpressionNode::convertToRPN()
     QMap<int, Operator*> operators = Operator::operators;
     QList<Token> newExpression;
     QList<Token> stack;
-    QString string;
 
     foreach (Token token, this->expression)
     {
-        string = "";
-        foreach (Token token, newExpression)
+        TokenKind kind = token.getKind();
+
+        if (kind == T_DOUBLE)
         {
-            string += token.getValue();
+            newExpression.append(token);
         }
-
-       // qDebug() << string;
-        string = "";
-
-        foreach (Token token, stack)
+        else if (kind == T_STRING)
         {
-            string += token.getValue();
+            if (isFunction(token))
+            {
+                stack.append(token);
+            }
+            else
+            {
+                newExpression.append(token);
+            }
         }
+        else if (kind == T_COMMA)
+        {
+            while (stack.length () != 0 && stack[stack.length()-1].getKind() != T_PARENTHESIS_LEFT)
+            {
+                newExpression.append(stack[stack.length()-1]);
+                stack.removeLast();
+            }
 
-       // qDebug() << string;
-
-        if (Operator::isOperator(token))
+            if (stack.length() == 0)
+            {
+                qDebug() << "PARENTHESIS OR COMMA ERROR";
+            }
+        }
+        else if (Operator::isOperator(token))
         {
             Operator* currentOperator = operators[token.getKind()];
 
@@ -98,7 +111,20 @@ void ExpressionNode::convertToRPN()
                 newExpression.append(stack[stack.length()-1]);
                 stack.removeLast();
             }
+
+            if (stack.length() == 0)
+            {
+                qDebug() << "PARENTHESIS ERROR 2";
+                return;
+            }
+
             stack.removeLast();
+
+            if (stack.length() != 0 && stack[stack.length()-1].getKind() == T_STRING && isFunction(stack[stack.length()-1]))
+            {
+                newExpression.append(stack[stack.length()-1]);
+                stack.removeLast();
+            }
         }
         else
         {
@@ -115,6 +141,13 @@ void ExpressionNode::convertToRPN()
     this->expression = newExpression;
 }
 
+
+bool ExpressionNode::isFunction(Token token)
+{
+    QString value = token.getValue();
+
+    return (value == "NORME" || value == "DET" || value == "SOLVE");
+}
 
 /**
  * @brief toString method
