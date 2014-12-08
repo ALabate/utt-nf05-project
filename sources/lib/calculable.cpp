@@ -56,9 +56,9 @@ QString Calculable::toString() const
  * @return a Calculable
  */
 
-Calculable Calculable::operator*(Calculable const &a)
+Calculable* Calculable::operator*(Calculable const &a)
 {
-    return Calculable(this->getValue() * a.getValue());
+    return new Calculable(this->getValue() * a.getValue());
 }
 
 
@@ -69,9 +69,9 @@ Calculable Calculable::operator*(Calculable const &a)
  * @return a Calculable
  */
 
-Calculable Calculable::operator/(Calculable const &a)
+Calculable* Calculable::operator/(Calculable const &a)
 {
-    return Calculable(this->getValue() / a.getValue());
+    return new Calculable(this->getValue() / a.getValue());
 }
 
 
@@ -82,9 +82,9 @@ Calculable Calculable::operator/(Calculable const &a)
  * @return a Calculable
  */
 
-Calculable Calculable::operator-(Calculable const &a)
+Calculable* Calculable::operator-(Calculable const &a)
 {
-    return Calculable(this->getValue() - a.getValue());
+    return new Calculable(this->getValue() - a.getValue());
 }
 
 
@@ -95,7 +95,7 @@ Calculable Calculable::operator-(Calculable const &a)
  * @return a Calculable
  */
 
-Calculable Calculable::operator+(Calculable const &a)
+Calculable* Calculable::operator+(Calculable const &a)
 {
-    return Calculable(this->getValue() + a.getValue());
+    return new Calculable(this->getValue() + a.getValue());
 }

@@ -12,10 +12,12 @@
 #include "lib/operator.h"
 
 
+class VarNode;
+
 class ExpressionNode : public Node
 {
     public:
-        ExpressionNode(QList<Token> expression);
+        ExpressionNode(QList<Token> expression, QList<VarNode *>* registry);
         ~ExpressionNode();
 
         Calculable* execute();
@@ -26,8 +28,9 @@ class ExpressionNode : public Node
         void convertToRPN();
         bool isFunction(Token token);
 
+        QList<VarNode*>* registry;
         QList<Token> expression;
-        Calculable *value;
+        Calculable* value;
 };
 
 #endif // EXPRESSIONNODE_H

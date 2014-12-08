@@ -10,7 +10,7 @@
 #include "lib/token.h"
 #include "lib/expressionNode.h"
 
-class VarNode
+class VarNode : public Node
 {
     public:
         VarNode(QString varName, Calculable *value);

@@ -1,3 +1,4 @@
+#include "varNode.h"
 #include "expressionNode.h"
 
 
@@ -7,10 +8,11 @@
  * @param value a pointer to the Calculable
  */
 
-ExpressionNode::ExpressionNode(QList<Token> expression)
+ExpressionNode::ExpressionNode(QList<Token> expression, QList<VarNode*>* registry)
 {
     this->expression = expression;
     this->value = NULL;
+    this->registry = registry;
 
     convertToRPN();
 }
@@ -27,15 +29,72 @@ ExpressionNode::~ExpressionNode() {}
 
 Calculable* ExpressionNode::execute()
 {
-    QString string;
+    QList<Calculable*> stack;
+    QList<Token> expression = this->expression;
 
-    foreach (Token token, this->expression)
+    foreach (Token token, expression)
     {
-        string += token.getValue();
+
+        TokenKind kind = token.getKind();
+
+        if (kind == T_STRING)
+        {
+            if (isFunction(token))
+            {
+                qDebug() << "Functions not implemented yet !";
+            }
+            else
+            {
+                VarNode* var = VarNode::getVar(token.getValue(), this->registry);
+
+                if (var == NULL)
+                {
+                    return NULL;
+                }
+
+                stack.append(var->getValue());
+            }
+        }
+        else if (kind == T_DOUBLE)
+        {
+            stack.append(new Calculable(token.getValue().toDouble()));
+        }
+        else if (Operator::isOperator(token))
+        {
+            if (stack.length() < 2)
+            {
+                qDebug() << "Not enough argument for operator";
+                return NULL;
+            }
+
+            Calculable a = *(stack[stack.length()-1]);
+            stack.removeLast();
+
+            Calculable b = *(stack[stack.length()-1]);
+            stack.removeLast();
+
+            switch (token.getKind())
+            {
+                case T_SUM:
+                    stack.append(a+b);
+                    break;
+
+                case T_SUB:
+                    stack.append(a-b);
+                    break;
+
+                case T_MULTIPLY:
+                    stack.append(a*b);
+                    break;
+
+                case T_DIVIDE:
+                    stack.append(a/b);
+                    break;
+            }
+        }
     }
 
-    qDebug() << string;
-    return this->value;
+    return stack[0];
 }
 
 
@@ -49,7 +108,7 @@ void ExpressionNode::convertToRPN()
     {
         TokenKind kind = token.getKind();
 
-        if (kind == T_DOUBLE)
+        if (kind == T_DOUBLE) // || kind == T_MATRIX
         {
             newExpression.append(token);
         }
@@ -75,6 +134,7 @@ void ExpressionNode::convertToRPN()
             if (stack.length() == 0)
             {
                 qDebug() << "PARENTHESIS OR COMMA ERROR";
+                return;
             }
         }
         else if (Operator::isOperator(token))
@@ -114,7 +174,7 @@ void ExpressionNode::convertToRPN()
 
             if (stack.length() == 0)
             {
-                qDebug() << "PARENTHESIS ERROR 2";
+                qDebug() << "PARENTHESIS ERROR";
                 return;
             }
 

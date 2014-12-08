@@ -71,7 +71,7 @@ Node* Parser::generateTree(QList<Token> tokens)
 
         if (kind == T_DOUBLE || kind == T_STRING)
         {
-            ExpressionNode* node = new ExpressionNode(tokens);
+            ExpressionNode* node = new ExpressionNode(tokens, this->registry);
             return node;
         }
         else
@@ -103,7 +103,7 @@ Node* Parser::generateTree(QList<Token> tokens)
             }
         }
 
-        return new ExpressionNode(tokens);
+        return new ExpressionNode(tokens, this->registry);
     }
 
 }

@@ -13,10 +13,10 @@ class Calculable
         QString toString() const;
         void setValue(double newValue);
 
-        Calculable operator*(Calculable const &a);
-        Calculable operator/(Calculable const &a);
-        Calculable operator+(Calculable const &a);
-        Calculable operator-(Calculable const &a);
+        Calculable* operator*(Calculable const &a);
+        Calculable* operator/(Calculable const &a);
+        Calculable* operator+(Calculable const &a);
+        Calculable* operator-(Calculable const &a);
 
 
     protected:
