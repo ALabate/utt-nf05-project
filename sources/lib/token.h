@@ -18,7 +18,9 @@ enum TokenKind
     T_DOUBLE,
     T_PARENTHESIS_LEFT,
     T_PARENTHESIS_RIGHT,
-    T_STRING
+    T_STRING,
+    T_MODULO,
+    T_POW
 };
 
 

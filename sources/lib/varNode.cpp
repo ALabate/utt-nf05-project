@@ -9,7 +9,6 @@
  */  
    
 VarNode::VarNode(QString varName, Calculable* value)
-: Node()
 {
     this->varName = varName;
     this->value = value;

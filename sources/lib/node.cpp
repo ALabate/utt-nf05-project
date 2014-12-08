@@ -3,13 +3,13 @@
 
 /**
  * @brief Constructor
- * 
+ *
  * @param children List of Node children
  */
 
 Node::Node()
 {
-}   
+}
 
 
 /**

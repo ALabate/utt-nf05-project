@@ -10,11 +10,8 @@
 #include "lib/calculable.h"
 #include "lib/lexer.h"
 #include "lib/token.h"
-#include "lib/node.h"
-#include "lib/varNode.h"
-#include "lib/calculableNode.h"
+#include "lib/expressionNode.h"
 #include "lib/assignationNode.h"
-#include "lib/operatorNode.h"
 #include "lib/varNode.h"
 
 

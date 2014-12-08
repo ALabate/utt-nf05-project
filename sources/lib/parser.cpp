@@ -17,26 +17,6 @@ Parser::Parser(QString source, QList<VarNode *> *registry)
 
 
 /**
- * @brief Initialize the operator list ordered by priority
- * @return the operator list 
- */
-
-QList<TokenKind> Parser::initializeOperators()
-{
-    QList<TokenKind> operators;
-    operators.append(T_ASSIGNMENT);
-    operators.append(T_SUM);
-    operators.append(T_SUB);
-    operators.append(T_MULTIPLY);
-    operators.append(T_DIVIDE);
-
-    return operators;
-}
-
-QList<TokenKind> Parser::operators = Parser::initializeOperators();
-
-
-/**
  * @brief run the parser
  * @return a Calculable
  */
@@ -68,7 +48,7 @@ Calculable* Parser::run()
     else
     {
         Node *tree = this->generateTree(tokens);
-        return tree->execute();    
+        return tree->execute();
     }
 }
 
@@ -80,126 +60,50 @@ Calculable* Parser::run()
  * @return a Node tree representation of the tokenlist
  */
 
+
 Node* Parser::generateTree(QList<Token> tokens)
 {
-
     if (tokens.length() == 1)
     {
         Token token = tokens[0];
         TokenKind kind = token.getKind();
 
 
-        if (kind == T_DOUBLE)
+        if (kind == T_DOUBLE || kind == T_STRING)
         {
-            double value = token.getValue().toDouble();
-            Calculable *calculable = new Calculable(value);
-            CalculableNode *node = new CalculableNode(calculable);
+            ExpressionNode* node = new ExpressionNode(tokens);
             return node;
-        }
-        else if (kind == T_STRING)
-        {
-            QString reference = token.getValue();
-
-            VarNode *varNode = VarNode::getVar(reference, this->registry);
-            return varNode;
         }
         else
         {
-            qDebug() << "Token not at the right place";
+            return NULL;
         }
-
     }
     else
     {
-        int currentLevel = 0;
-        bool isThereRootToken = false;
-
-        for (int i = 0; i < Parser::operators.length(); i++)
+        //Search for an assignement
+        for (int i = 0; i < tokens.length(); i++)
         {
-            TokenKind operator_ = Parser::operators[i];
-
-            for (int j = tokens.length()-1; j >= 0; j--)
+            if (tokens[i].getKind() == T_ASSIGNMENT)
             {
-                Token token = tokens[j];
-                TokenKind kind = token.getKind();
+                QList<Token> varName = tokens.mid(0, i);
 
-                if (kind == T_PARENTHESIS_LEFT)
-                {  
-                    currentLevel++;
-                }
-                else if (kind == T_PARENTHESIS_RIGHT)
+                if (varName.length() > 1 || varName[0].getKind() != T_STRING)
                 {
-                    currentLevel--;
+                    qDebug() << "Invalid syntax for assignment";
+                    return NULL;
                 }
-                else
-                {
-                    if (currentLevel == 0)
-                    {
-                        isThereRootToken = true;
 
-                        if (kind == operator_)
-                        {
-                            Node *right = Parser::generateTree(tokens.mid(j+1, tokens.length()-1));
+                ExpressionNode* right = (ExpressionNode*) generateTree(tokens.mid(i+1, tokens.length()-1));
+                VarNode *varNode = VarNode::getVar(varName[0].getValue(), this->registry);
 
-                            if (kind == T_ASSIGNMENT) 
-                            {
-                                QList<Token> varName = tokens.mid(0, j);
 
-                                if (varName.length() > 1 || varName[0].getKind() != T_STRING)
-                                {
-                                    qDebug() << "Invalid syntax for assignment";
-                                    return NULL;
-                                }
-
-                                VarNode *varNode = VarNode::getVar(varName[0].getValue(), this->registry);
-                                AssignationNode *assignationNode = new AssignationNode(varNode, right);
-                                return assignationNode;
-                            }
-
-                           Node *left = Parser::generateTree(tokens.mid(0, j));
-
-                            switch (kind)
-                            {
-                                case T_SUM:
-                                {
-                                    OperatorNode *operatorNode = new OperatorNode(O_SUM, left, right);
-                                    return operatorNode;
-                                    break;
-
-                                }
-                                 
-                                case T_SUB:
-                                {
-                                    OperatorNode *operatorNode = new OperatorNode(O_SUB, left, right);
-                                    return operatorNode;
-                                    break;
-                                }
-                                    
-                                case T_MULTIPLY:
-                                {
-                                    OperatorNode *operatorNode = new OperatorNode(O_MULTIPLY, left, right);
-                                    return operatorNode;
-                                    break;
-                                }
-                                    
-                                case T_DIVIDE:
-                                {
-                                    OperatorNode *operatorNode = new OperatorNode(O_DIVIDE, left, right);
-                                    return operatorNode;
-                                    break;   
-                                }
-                                 
-                            }
-                        }
-                    }                    
-                }
-            }        
-        }   
-
-        if (!isThereRootToken && tokens[0].getKind() == T_PARENTHESIS_LEFT
-            && tokens[tokens.length()-1].getKind() == T_PARENTHESIS_RIGHT)
-        {
-            return Parser::generateTree(tokens.mid(1, tokens.length()-2));
+                AssignationNode *assignationNode = new AssignationNode(varNode, right);
+                return assignationNode;
+            }
         }
+
+        return new ExpressionNode(tokens);
     }
+
 }

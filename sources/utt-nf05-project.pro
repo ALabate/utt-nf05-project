@@ -17,24 +17,24 @@ SOURCES += main.cpp\
     detailedlist.cpp \
     lib/assignationNode.cpp \
     lib/calculable.cpp \
-    lib/calculableNode.cpp \
     lib/lexer.cpp \
-    lib/node.cpp \
-    lib/operatorNode.cpp \
     lib/parser.cpp \
     lib/token.cpp \
-    lib/varNode.cpp
+    lib/varNode.cpp \
+    lib/expressionNode.cpp \
+    lib/operator.cpp \
+    lib/node.cpp
 
 HEADERS  += mainwindow.hpp \
     detailedlist.hpp \
     lib/assignationNode.h \
     lib/calculable.h \
-    lib/calculableNode.h \
     lib/lexer.h \
-    lib/node.h \
-    lib/operatorNode.h \
     lib/parser.h \
     lib/token.h \
-    lib/varNode.h
+    lib/varNode.h \
+    lib/expressionNode.h \
+    lib/operator.h \
+    lib/node.h
 
 FORMS    += mainwindow.ui

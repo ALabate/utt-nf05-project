@@ -8,24 +8,25 @@
 
 #include "lib/node.h"
 #include "lib/varNode.h"
+#include "lib/expressionNode.h"
 #include "lib/token.h"
 
 
 class AssignationNode : public Node
 {
     public:
-        AssignationNode(VarNode *variable, Node *expression);
+        AssignationNode(VarNode *variable, ExpressionNode *expression);
 
         virtual Calculable* execute();
         virtual QString toString() const;
 
         VarNode* getVariable() const;
-        Node* getExpression() const;
+        ExpressionNode* getExpression() const;
 
 
     protected:
         VarNode *variable;
-        Node *expression;
+        ExpressionNode *expression;
 };
 
 #endif // ASSIGNATIONNODE_H

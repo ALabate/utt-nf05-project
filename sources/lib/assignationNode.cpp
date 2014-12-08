@@ -7,8 +7,7 @@
  * @param expression reference to the expression to execute
  */  
    
-AssignationNode::AssignationNode(VarNode *variable, Node *expression)
-: Node()
+AssignationNode::AssignationNode(VarNode *variable, ExpressionNode *expression)
 {
     this->variable = variable;
     this->expression = expression;
@@ -45,7 +44,7 @@ VarNode* AssignationNode::getVariable() const
  * @return a pointer to the expression Node associated to this association Node
  */
 
-Node* AssignationNode::getExpression() const
+ExpressionNode* AssignationNode::getExpression() const
 {
     return this->expression;
 }

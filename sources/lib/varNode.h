@@ -8,9 +8,9 @@
 
 #include "lib/node.h"
 #include "lib/token.h"
-#include "lib/calculableNode.h"
+#include "lib/expressionNode.h"
 
-class VarNode : public Node
+class VarNode
 {
     public:
         VarNode(QString varName, Calculable *value);
