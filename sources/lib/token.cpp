@@ -1,13 +1,6 @@
 #include "token.h"
 
 
-/**
- * @brief Constructor
- * 
- * @param kind kind of token   
- * @param value value of token
- */
-
 Token::Token(TokenKind kind, QString value)
 {
     this->kind = kind;
@@ -15,21 +8,14 @@ Token::Token(TokenKind kind, QString value)
 }
 
 
-/**
- * @brief kind accessor
- * @return kind of token
- */
+Token::~Token() {}
+
 
 TokenKind Token::getKind() const
 {
     return this->kind;
 }
 
-
-/**
- * @brief value accessor
- * @return value of token
- */
 
 QString Token::getValue() const
 {

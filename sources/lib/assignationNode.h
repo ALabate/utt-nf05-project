@@ -15,13 +15,45 @@
 class AssignationNode : public Node
 {
     public:
-        AssignationNode(VarNode *variable, ExpressionNode *expression);
 
-        virtual Calculable* execute();
-        virtual QString toString() const;
+    /**
+     * @brief constructor
+     *
+     * @param variable VarNode to set
+     * @param expression expression to execute
+     */
+    AssignationNode(VarNode *variable, ExpressionNode *expression);
 
-        VarNode* getVariable() const;
-        ExpressionNode* getExpression() const;
+    /**
+     * @brief destructor
+     */
+    ~AssignationNode();
+
+    /**
+     * @brief put expression value in memory as varName
+     * @return expression value
+     */
+    virtual Calculable* execute();
+
+    /**
+     * @brief variable Node accessor
+     *
+     * @return a pointer to the variable Node associated to this assocation Node
+     */
+    VarNode* getVariable() const;
+
+    /**
+     * @brief expression Node accessor
+     * @return a pointer to the expression Node associated to this association Node
+     */
+    ExpressionNode* getExpression() const;
+
+    /**
+     * @brief toString method
+     *
+     * @return a QString representation of the Node
+     */
+    virtual QString toString() const;
 
 
     protected:

@@ -1,12 +1,6 @@
 #include "parser.h"
 
 
-/**
- * @brief Constructor
- * 
- * @param source QString to parse
- * @param registry memory where to set the variables
- */
 
 Parser::Parser(QString source, QList<VarNode *> *registry)
 {
@@ -16,10 +10,8 @@ Parser::Parser(QString source, QList<VarNode *> *registry)
 }
 
 
-/**
- * @brief run the parser
- * @return a Calculable
- */
+Parser::~Parser() {}
+
 
 Calculable* Parser::run()
 {
@@ -51,14 +43,6 @@ Calculable* Parser::run()
         return tree->execute();
     }
 }
-
-
-/**
- * @brief generate a Node tree representation of a tokenList
- * 
- * @param tokens the tokenList to parse
- * @return a Node tree representation of the tokenlist
- */
 
 
 Node* Parser::generateTree(QList<Token> tokens)

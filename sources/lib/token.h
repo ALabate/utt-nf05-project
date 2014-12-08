@@ -28,10 +28,32 @@ enum TokenKind
 class Token
 {
     public:
+
+        /**
+         * @brief constructor
+         *
+         * @param kind kind of token
+         * @param value value of token
+         */
         Token(TokenKind kind, QString value="");
-        
+
+        /**
+         * @brief destructor
+         */
+        ~Token();
+
+        /**
+         * @brief kind accessor
+         * @return kind of token
+         */
         TokenKind getKind() const;
+
+        /**
+         * @brief value accessor
+         * @return value of token
+         */
         QString getValue() const;
+
 
     protected:
         TokenKind kind;

@@ -2,12 +2,6 @@
 #include "expressionNode.h"
 
 
-/**
- * @brief Constructor
- * 
- * @param value a pointer to the Calculable
- */
-
 ExpressionNode::ExpressionNode(QList<Token> expression, QList<VarNode*>* registry)
 {
     this->expression = expression;
@@ -20,12 +14,6 @@ ExpressionNode::ExpressionNode(QList<Token> expression, QList<VarNode*>* registr
 
 ExpressionNode::~ExpressionNode() {}
 
-
-/**
- * @brief Execute the node
- * 
- * @return a Calculable pointer
- */
 
 Calculable* ExpressionNode::execute()
 {
@@ -95,6 +83,17 @@ Calculable* ExpressionNode::execute()
     }
 
     return stack[0];
+}
+
+
+QString ExpressionNode::toString() const
+{
+    if (this->value == NULL)
+    {
+        return "";
+    }
+
+    return "Expression node value: " + this->value->toString();
 }
 
 
@@ -207,20 +206,4 @@ bool ExpressionNode::isFunction(Token token)
     QString value = token.getValue();
 
     return (value == "NORME" || value == "DET" || value == "SOLVE");
-}
-
-/**
- * @brief toString method
- * 
- * @return a QString representation of the Node
- */
-
-QString ExpressionNode::toString() const
-{
-    if (this->value == NULL)
-    {
-        return "";
-    }
-
-    return "Expression node value: " + this->value->toString();
 }

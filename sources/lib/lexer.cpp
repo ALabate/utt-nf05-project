@@ -1,22 +1,14 @@
 #include "lexer.h"
 
 
-/**
- * @brief Constructor
- * 
- * @param source String going to be tokenized
- */
-
 Lexer::Lexer(QString source)
 {
     this->source = source;
 }
 
 
-/**
- * @brief Tokenize the source
- * @return List of tokens
- */
+Lexer::~Lexer() {}
+
 
 QList<Token> Lexer::run()
 {
@@ -46,11 +38,6 @@ QList<Token> Lexer::run()
 }
 
 
-/**
- * @brief Initialize Lexer::tokens static map
- * @return Map of TokenKind and it's associated regex
- */
-
 QMap<TokenKind, QRegExp> Lexer::initializeTokens()
 {
     QMap<TokenKind, QRegExp> map;
@@ -76,15 +63,6 @@ QMap<TokenKind, QRegExp> Lexer::initializeTokens()
 
 QMap<TokenKind, QRegExp> Lexer::tokens = Lexer::initializeTokens();
 
-
-/**
- * @brief Try to find a token on a string, begenning on given offset
- * 
- * @param line QString source
- * @param offset index where to begin the search
- * 
- * @return Token
- */
 
 Token Lexer::match(QString line, int offset)
 {

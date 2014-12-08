@@ -1,12 +1,6 @@
 #include "assignationNode.h"
 
 
-/**
- * @brief Constructor
- * @param variable reference to the VarNode to set
- * @param expression reference to the expression to execute
- */  
-   
 AssignationNode::AssignationNode(VarNode *variable, ExpressionNode *expression)
 {
     this->variable = variable;
@@ -14,10 +8,8 @@ AssignationNode::AssignationNode(VarNode *variable, ExpressionNode *expression)
 }
 
 
-/**
- * @brief Put expression value in memory as varName 
- * @return expression value
- */
+AssignationNode::~AssignationNode() {}
+
 
 Calculable* AssignationNode::execute()
 {
@@ -28,33 +20,17 @@ Calculable* AssignationNode::execute()
 }
 
 
-/**
- * @brief variable Node accessor
- * @return a pointer to the variable Node associated to this assocation Node
- */
-
 VarNode* AssignationNode::getVariable() const
 {
     return this->variable;
 }
 
 
-/**
- * @brief expression Node accessor
- * @return a pointer to the expression Node associated to this association Node
- */
-
 ExpressionNode* AssignationNode::getExpression() const
 {
     return this->expression;
 }
 
-
-/**
- * @brief toString method
- * 
- * @return a QString representation of the Node
- */
 
 QString AssignationNode::toString() const
 {
