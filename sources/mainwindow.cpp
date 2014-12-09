@@ -27,15 +27,9 @@ bool MainWindow::event(QEvent *event)
     {
         QKeyEvent *ke = static_cast<QKeyEvent *>(event);
 
-        if (this->currentPos == 0)
-        {
-            return true;
-        }
-
         if (ke->key() == Qt::Key_Up)
         {
-            qDebug() << "oy";
-            if (this->currentPos != 0)
+            if (this->currentPos > 0)
             {
                 this->currentPos--;
                 this->ui->lineEdit->setText(this->history[this->currentPos]);
@@ -43,8 +37,7 @@ bool MainWindow::event(QEvent *event)
         }
         else if (ke->key() == Qt::Key_Down)
         {
-            qDebug() << "yo";
-            if (this->currentPos != this->history.length()-1)
+            if (this->currentPos < this->history.length()-1)
             {
                 this->currentPos++;
                 this->ui->lineEdit->setText(this->history[this->currentPos]);
@@ -109,7 +102,7 @@ void MainWindow::eval()
 {
     QString expression = ui->lineEdit->text();
     this->history.append(expression);
-    this->currentPos++;
+    this->currentPos = this->history.length();
     Parser parser(expression, this->registry);
     Calculable *value = parser.run();
 

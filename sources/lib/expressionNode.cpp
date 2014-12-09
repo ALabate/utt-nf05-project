@@ -35,7 +35,7 @@ Calculable* ExpressionNode::execute()
             {
                 VarNode* var = VarNode::getVar(token.getValue(), this->registry);
 
-                if (var == NULL)
+                if (var->getValue() == NULL)
                 {
                     return NULL;
                 }
