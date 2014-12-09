@@ -11,11 +11,48 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(eval()));
     connect(ui->detailedList, SIGNAL(elementDeleted(QString)), this, SLOT(deleteVar(QString)));
+
+    currentPos = 0;
 }
 
 MainWindow::~MainWindow()
 {
 	delete ui;
+}
+
+
+bool MainWindow::event(QEvent *event)
+{
+    if (event->type() == QEvent::KeyPress)
+    {
+        QKeyEvent *ke = static_cast<QKeyEvent *>(event);
+
+        if (this->currentPos == 0)
+        {
+            return true;
+        }
+
+        if (ke->key() == Qt::Key_Up)
+        {
+            qDebug() << "oy";
+            if (this->currentPos != 0)
+            {
+                this->currentPos--;
+                this->ui->lineEdit->setText(this->history[this->currentPos]);
+            }
+        }
+        else if (ke->key() == Qt::Key_Down)
+        {
+            qDebug() << "yo";
+            if (this->currentPos != this->history.length()-1)
+            {
+                this->currentPos++;
+                this->ui->lineEdit->setText(this->history[this->currentPos]);
+            }
+        }
+    }
+
+    return QWidget::event(event);
 }
 
 
@@ -71,6 +108,8 @@ void MainWindow::deleteVar(QString varName)
 void MainWindow::eval()
 {
     QString expression = ui->lineEdit->text();
+    this->history.append(expression);
+    this->currentPos++;
     Parser parser(expression, this->registry);
     Calculable *value = parser.run();
 
