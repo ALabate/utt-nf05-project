@@ -42,6 +42,16 @@ class Parser : public QObject
         Calculable* run();
 
 
+    public:
+
+        /**
+         * @brief isFunction check if a token is a function
+         * @param token to test
+         * @return type of token
+         */
+        static bool isFunction(Token token);
+
+
     private:
 
         /**

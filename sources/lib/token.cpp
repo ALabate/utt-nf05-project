@@ -21,3 +21,15 @@ QString Token::getValue() const
 {
     return this->value;
 }
+
+
+void Token::setValue(QString value)
+{
+    this->value = value;
+}
+
+
+void Token::setKind(TokenKind kind)
+{
+    this->kind = kind;
+}

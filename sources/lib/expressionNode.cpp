@@ -1,5 +1,5 @@
-#include "varNode.h"
 #include "expressionNode.h"
+#include "parser.h"
 
 
 ExpressionNode::ExpressionNode(QList<Token> expression, QList<VarNode*>* registry)
@@ -27,9 +27,14 @@ Calculable* ExpressionNode::execute()
 
         if (kind == T_STRING)
         {
-            if (isFunction(token))
+            if (Parser::isFunction(token))
             {
-                qDebug() << "Functions not implemented yet !";
+                if (token.getValue() == "TEST")
+                {
+                    Calculable* arg1 = stack[stack.length()-1];
+                    stack.removeLast();
+                    stack.append(arg1);
+                }
             }
             else
             {
@@ -113,7 +118,7 @@ void ExpressionNode::convertToRPN()
         }
         else if (kind == T_STRING)
         {
-            if (isFunction(token))
+            if (Parser::isFunction(token))
             {
                 stack.append(token);
             }
@@ -179,7 +184,7 @@ void ExpressionNode::convertToRPN()
 
             stack.removeLast();
 
-            if (stack.length() != 0 && stack[stack.length()-1].getKind() == T_STRING && isFunction(stack[stack.length()-1]))
+            if (stack.length() != 0 && stack[stack.length()-1].getKind() == T_STRING && Parser::isFunction(stack[stack.length()-1]))
             {
                 newExpression.append(stack[stack.length()-1]);
                 stack.removeLast();
@@ -198,12 +203,4 @@ void ExpressionNode::convertToRPN()
     }
 
     this->expression = newExpression;
-}
-
-
-bool ExpressionNode::isFunction(Token token)
-{
-    QString value = token.getValue();
-
-    return (value == "NORME" || value == "DET" || value == "SOLVE");
 }

@@ -54,6 +54,18 @@ class Token
          */
         QString getValue() const;
 
+        /**
+         * @brief setValue value setter
+         * @param value value to set
+         */
+        void setValue(QString value);
+
+        /**
+         * @brief setKind kind setter
+         * @param kind kind to set
+         */
+        void setKind(TokenKind kind);
+
 
     protected:
         TokenKind kind;
