@@ -22,7 +22,6 @@ Calculable* ExpressionNode::execute()
 
     foreach (Token token, expression)
     {
-
         TokenKind kind = token.getKind();
 
         if (kind == T_STRING)
@@ -54,12 +53,6 @@ Calculable* ExpressionNode::execute()
         }
         else if (Operator::isOperator(token))
         {
-            if (stack.length() < 2)
-            {
-                qDebug() << "Not enough argument for operator";
-                return NULL;
-            }
-
             Calculable a = *(stack[stack.length()-1]);
             stack.removeLast();
 
@@ -104,12 +97,49 @@ QString ExpressionNode::toString() const
 
 void ExpressionNode::convertToRPN()
 {
+    //We search for negatives numbers i.e "T_SUB" not used as operator
+    for (int i = 0; i < this->expression.length(); i++)
+    {
+        if (this->expression[i].getKind() == T_SUB)
+        {
+            // qDebug() << "la";
+            //Beginning of expression || parenthesis to the left
+            if (i == 0)
+            {
+                qDebug() << "darace";
+            }
+            if (i == 0 || this->expression[i-1].getKind() == T_PARENTHESIS_LEFT)
+            {
+                qDebug() << "alabate";
+                TokenKind rightTokenKind = this->expression[i+1].getKind();
+
+                //Scalar or string to the right
+                if (rightTokenKind == T_DOUBLE || rightTokenKind == T_STRING) // || T_MATRIX ? => TODO T_CALCULABLE needs to be implemented
+                {
+                    qDebug() << "icaaaaai";
+                    QList<Token> newExpression;
+
+                    //Add "-1 *"
+                    newExpression.append(this->expression.mid(0, i));
+                    newExpression.append(Token(T_DOUBLE, "-1"));
+                    newExpression.append(Token(T_MULTIPLY, "*"));
+                    newExpression.append(this->expression.mid(i+1, this->expression.length()));
+                    this->expression = newExpression;
+                    qDebug() << "hihi";
+                }
+            }
+        }
+    }
+
+
     QMap<int, Operator*> operators = Operator::operators;
     QList<Token> newExpression;
     QList<Token> stack;
 
     foreach (Token token, this->expression)
     {
+        qDebug() << token.getValue();
+
         TokenKind kind = token.getKind();
 
         if (kind == T_DOUBLE) // || kind == T_MATRIX
