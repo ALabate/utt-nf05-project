@@ -1,7 +1,6 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
-
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
     registry(new QList<VarNode *>),
@@ -58,7 +57,7 @@ void MainWindow::memorySync()
         QString varName = currentVar->getName();
 
         if (currentVar->getValue() != NULL) {
-            QString varValue = QString::number(currentVar->getValue()->getValue());
+            QString varValue = currentVar->getValue()->getValue();
 
             bool found = false;
 
@@ -101,16 +100,34 @@ void MainWindow::deleteVar(QString varName)
 void MainWindow::eval()
 {
     QString expression = ui->lineEdit->text();
-    this->history.append(expression);
+    if(this->history.isEmpty() || this->history.last() != expression)
+        this->history.append(expression);
     this->currentPos = this->history.length();
+    Calculable *value;
     Parser parser(expression, this->registry);
-    Calculable *value = parser.run();
 
-    memorySync();
-    if (value != NULL)
+    ui->textBrowser->append("<span style=\"color:#858282;text-decoration:underline;font-size:5px;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>");
+    ui->textBrowser->append("<span style=\"color:#A3A3A3;\">" + expression + " = </span>");
+
+    try
     {
-        ui->textBrowser->append(QString::number(value->getValue()));
+        value = parser.run();
+        memorySync();
+        if (value != NULL)
+        {
+            ui->textBrowser->append(value->getValue());
+            ui->lineEdit->setText("");
+        }
+        else
+        {
+            throw std::runtime_error("Unknown error");
+        }
     }
-
-    ui->lineEdit->setText("");
+    catch (std::runtime_error &e)
+    {
+        ui->textBrowser->append("<span style=\"color:red\">[Error] " + QString::fromStdString(e.what()) + "</span>");
+    }
+    catch (...) {
+        ui->textBrowser->append("<span style=\"color:red\">[Error] Caught an unknown exception</span>");
+    }
 }

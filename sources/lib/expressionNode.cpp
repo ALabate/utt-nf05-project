@@ -48,22 +48,26 @@ Calculable* ExpressionNode::execute()
                 stack.append(var->getValue());
             }
         }
-        else if (kind == T_DOUBLE)
+        else if (kind == T_SCALAR)
         {
-            stack.append(new Calculable(token.getValue().toDouble()));
+            stack.append(new Scalar(token.getValue()));
+        }
+        else if (kind == T_MATRIX)
+        {
+            stack.append(new Matrix(token.getValue()));
         }
         else if (Operator::isOperator(token))
         {
             if (stack.length() < 2)
             {
-                qDebug() << "Not enough argument for operator";
+                throw std::runtime_error("Not enough argument for operator " + token.getValue().toStdString());
                 return NULL;
             }
 
-            Calculable a = *(stack[stack.length()-1]);
+            Calculable &a = *(stack[stack.length()-1]);
             stack.removeLast();
 
-            Calculable b = *(stack[stack.length()-1]);
+            Calculable &b = *(stack[stack.length()-1]);
             stack.removeLast();
 
             switch (token.getKind())
@@ -83,6 +87,8 @@ Calculable* ExpressionNode::execute()
                 case T_DIVIDE:
                     stack.append(a/b);
                     break;
+                default:
+                    throw std::runtime_error("An operator doesn't have its operation");
             }
         }
     }
@@ -112,7 +118,7 @@ void ExpressionNode::convertToRPN()
     {
         TokenKind kind = token.getKind();
 
-        if (kind == T_DOUBLE) // || kind == T_MATRIX
+        if (kind == T_SCALAR || kind == T_MATRIX)
         {
             newExpression.append(token);
         }
@@ -137,7 +143,7 @@ void ExpressionNode::convertToRPN()
 
             if (stack.length() == 0)
             {
-                qDebug() << "PARENTHESIS OR COMMA ERROR";
+                throw std::runtime_error("Parenthesis or comma error");
                 return;
             }
         }
@@ -178,7 +184,7 @@ void ExpressionNode::convertToRPN()
 
             if (stack.length() == 0)
             {
-                qDebug() << "PARENTHESIS ERROR";
+                throw std::runtime_error("Parenthesis error");
                 return;
             }
 

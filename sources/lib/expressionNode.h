@@ -10,6 +10,8 @@
 #include "lib/calculable.h"
 #include "lib/token.h"
 #include "lib/operator.h"
+#include "lib/calculables/scalar.h"
+#include "lib/calculables/matrix.h"
 
 
 class VarNode;

@@ -2,18 +2,25 @@
 #define CALCULABLE_H
 
 #include <QDebug>
+#include <stdexcept>
+#include <typeinfo>
 
 
 class Calculable
 {
     public:
 
-        /**
-         * @brief constructor
-         *
-         * @param value the calculable value
-         */
-        Calculable(double value);
+    /**
+     * @brief constructor
+     *
+     * @param value the calculable value
+     */
+    Calculable(QString value);
+
+    /**
+     * @brief constructor
+     */
+    Calculable();
 
         /**
          * @brief destructor
@@ -26,21 +33,21 @@ class Calculable
          *
          * @return the value of the Calculable
          */
-        double getValue() const;
+        virtual QString getValue() const;
 
         /**
          * @brief value setter
          *
          * @param newValue the value to set
          */
-        void setValue(double newValue);
+        virtual void setValue(QString newValue);
 
         /**
          * @brief toString method
          *
          * @return a QString representation of the Node
          */
-        QString toString() const;
+        virtual QString toString() const;
 
         /**
          * @brief overload operator * between two Calculable
@@ -48,7 +55,7 @@ class Calculable
          * @param a a Calculable
          * @return a Calculable
          */
-        Calculable* operator*(Calculable const &a);
+        virtual Calculable* operator*(Calculable const &a);
 
         /**
          * @brief overload operator / between two Calculable
@@ -56,7 +63,7 @@ class Calculable
          * @param a a Calculable
          * @return a Calculable
          */
-        Calculable* operator/(Calculable const &a);
+        virtual Calculable* operator/(Calculable const &a);
 
         /**
          * @brief overload operator - between two Calculable
@@ -64,7 +71,7 @@ class Calculable
          * @param a a Calculable
          * @return a Calculable
          */
-        Calculable* operator+(Calculable const &a);
+        virtual Calculable* operator+(Calculable const &a);
 
         /**
          * @brief overload operator + between two Calculable
@@ -72,11 +79,13 @@ class Calculable
          * @param a a Calculable
          * @return a Calculable
          */
-        Calculable* operator-(Calculable const &a);
+        virtual Calculable* operator-(Calculable const &a);
 
+        /**
+         * @brief Define the type of the element
+         */
+         virtual std::string getType() const = 0;
 
-    protected:
-       double value;
 };
 
 #endif // CALCULABLE_H

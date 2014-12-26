@@ -6,6 +6,7 @@
 #include <QEvent>
 #include <QKeyEvent>
 #include <QString>
+#include <stdexcept>
 
 #include "lib/parser.h"
 #include "lib/calculable.h"

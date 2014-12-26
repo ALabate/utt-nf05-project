@@ -34,7 +34,7 @@ Calculable* Parser::run()
 
     if (assignationNumber > 1)
     {
-        qDebug() << "Error: multiple assignation";
+        throw std::runtime_error("Multiple assignation");
         return NULL;
     }
     else
@@ -53,7 +53,7 @@ Node* Parser::generateTree(QList<Token> tokens)
         TokenKind kind = token.getKind();
 
 
-        if (kind == T_DOUBLE || kind == T_STRING)
+        if (kind == T_SCALAR || kind == T_STRING)
         {
             ExpressionNode* node = new ExpressionNode(tokens, this->registry);
             return node;
@@ -79,7 +79,7 @@ Node* Parser::generateTree(QList<Token> tokens)
                 //Beginning of expression
                 if (i == 0 || tokens[i-1].getKind() == T_PARENTHESIS_LEFT)
                 {
-                    if (tokens[i+1].getKind() == T_DOUBLE)
+                    if (tokens[i+1].getKind() == T_SCALAR)
                     {
                         tokens[i+1].setValue("-" + tokens[i+1].getValue());
                         tokens.removeAt(i);
@@ -91,20 +91,20 @@ Node* Parser::generateTree(QList<Token> tokens)
                             VarNode *var = VarNode::getVar(tokens[i+1].getValue(), this->registry);
                             if (!var->getValue() == NULL)
                             {
-                                tokens[i+1].setValue("-" + QString::number(var->getValue()->getValue()));
-                                tokens[i+1].setKind(T_DOUBLE);
+                                tokens[i+1].setValue("-" + var->getValue()->getValue());
+                                tokens[i+1].setKind(T_SCALAR);
                                 tokens.removeAt(i);
                             }
                             else
                             {
-                                qDebug() << "Var " + tokens[i+1].getValue() + " is not defined.";
+                                throw std::runtime_error("Var " + tokens[i+1].getValue().toStdString() + " is not defined.");
                             }
                         }
                         else
                         {
                             QList<Token> newTokens;
                             newTokens.append(tokens.mid(0, i));
-                            newTokens.append(Token(T_DOUBLE, "-1"));
+                            newTokens.append(Token(T_SCALAR, "-1"));
                             newTokens.append(Token(T_MULTIPLY, "*"));
                             newTokens.append(tokens.mid(i+1, tokens.length()));
                             tokens = newTokens;
@@ -118,7 +118,7 @@ Node* Parser::generateTree(QList<Token> tokens)
                 if (!var->getValue() == NULL)
                 {
                     tokens[i+1].setValue("-" + var->getValue()->toString());
-                    tokens[i+1].setKind(T_DOUBLE);
+                    tokens[i+1].setKind(T_SCALAR);
                 }
             }
         }
@@ -133,7 +133,7 @@ Node* Parser::generateTree(QList<Token> tokens)
 
             if (varName.length() > 1 || varName[0].getKind() != T_STRING)
             {
-                qDebug() << "Invalid syntax for assignment";
+                throw std::runtime_error("Invalid syntax for assignment");
                 return NULL;
             }
 
