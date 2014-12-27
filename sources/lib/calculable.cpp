@@ -1,52 +1,57 @@
 #include "calculable.h"
 
-
-Calculable::Calculable(double value)
+Calculable::Calculable(QString value)
 {
-    this->value = value;
+    this->setValue(value);
+}
+
+Calculable::Calculable()
+{
 }
 
 
 Calculable::~Calculable() {}
 
-
-double Calculable::getValue() const
+QString Calculable::getValue() const
 {
-    return this->value;
+    throw std::runtime_error("Cannot get value of an element of type " + getType());
 }
 
 
-void Calculable::setValue(double newValue)
+void Calculable::setValue(QString newValue)
 {
-    this->value = newValue;
+    throw std::runtime_error("Cannot set value of an element of type " + getType());
 }
-
 
 QString Calculable::toString() const
 {
-    return "Calculable value: " + QString::number(this->getValue());
+     return QString(getType().c_str()) + " value: " + this->getValue();
 }
-
 
 Calculable* Calculable::operator*(Calculable const &a)
 {
-    return new Calculable(this->getValue() * a.getValue());
+    throw std::runtime_error("Cannot use the operator * with an element of type " + getType());
 }
 
 
 Calculable* Calculable::operator/(Calculable const &a)
 {
-    return new Calculable(this->getValue() / a.getValue());
+    throw std::runtime_error("Cannot use the operator / with an element of type " + getType());
 }
 
 
 Calculable* Calculable::operator-(Calculable const &a)
 {
-    return new Calculable(this->getValue() - a.getValue());
+    throw std::runtime_error("Cannot use the operator - with an element of type " + getType());
 }
 
 
 Calculable* Calculable::operator+(Calculable const &a)
 {
-    return new Calculable(this->getValue() + a.getValue());
+    throw std::runtime_error("Cannot use the operator +  with an element of type " + getType());
 }
+
+//std::string Calculable::getType() const
+//{
+//   return "Calculable";
+//}

@@ -41,22 +41,33 @@ Calculable* ExpressionNode::execute()
 
                 if (var->getValue() == NULL)
                 {
+                    throw std::runtime_error("Var " + token.getValue().toStdString() + " is not defined.");
                     return NULL;
                 }
 
                 stack.append(var->getValue());
             }
         }
-        else if (kind == T_DOUBLE)
+        else if (kind == T_SCALAR)
         {
-            stack.append(new Calculable(token.getValue().toDouble()));
+            stack.append(new Scalar(token.getValue()));
+        }
+        else if (kind == T_MATRIX)
+        {
+            stack.append(new Matrix(token.getValue()));
         }
         else if (Operator::isOperator(token))
         {
-            Calculable a = *(stack[stack.length()-1]);
+            if (stack.length() < 2)
+            {
+                throw std::runtime_error("Not enough argument for operator " + token.getValue().toStdString());
+                return NULL;
+            }
+
+            Calculable &a = *(stack[stack.length()-1]);
             stack.removeLast();
 
-            Calculable b = *(stack[stack.length()-1]);
+            Calculable &b = *(stack[stack.length()-1]);
             stack.removeLast();
 
             switch (token.getKind())
@@ -76,6 +87,8 @@ Calculable* ExpressionNode::execute()
                 case T_DIVIDE:
                     stack.append(a/b);
                     break;
+                default:
+                    throw std::runtime_error("An operator doesn't have its operation");
             }
         }
     }
@@ -102,30 +115,22 @@ void ExpressionNode::convertToRPN()
     {
         if (this->expression[i].getKind() == T_SUB)
         {
-            // qDebug() << "la";
             //Beginning of expression || parenthesis to the left
-            if (i == 0)
-            {
-                qDebug() << "darace";
-            }
             if (i == 0 || this->expression[i-1].getKind() == T_PARENTHESIS_LEFT)
             {
-                qDebug() << "alabate";
                 TokenKind rightTokenKind = this->expression[i+1].getKind();
 
                 //Scalar or string to the right
-                if (rightTokenKind == T_DOUBLE || rightTokenKind == T_STRING) // || T_MATRIX ? => TODO T_CALCULABLE needs to be implemented
+                if (rightTokenKind == T_SCALAR || rightTokenKind == T_STRING) // || T_MATRIX ? => TODO T_CALCULABLE needs to be implemented
                 {
-                    qDebug() << "icaaaaai";
                     QList<Token> newExpression;
 
                     //Add "-1 *"
                     newExpression.append(this->expression.mid(0, i));
-                    newExpression.append(Token(T_DOUBLE, "-1"));
+                    newExpression.append(Token(T_SCALAR, "-1"));
                     newExpression.append(Token(T_MULTIPLY, "*"));
                     newExpression.append(this->expression.mid(i+1, this->expression.length()));
                     this->expression = newExpression;
-                    qDebug() << "hihi";
                 }
             }
         }
@@ -138,11 +143,9 @@ void ExpressionNode::convertToRPN()
 
     foreach (Token token, this->expression)
     {
-        qDebug() << token.getValue();
-
         TokenKind kind = token.getKind();
 
-        if (kind == T_DOUBLE) // || kind == T_MATRIX
+        if (kind == T_SCALAR || kind == T_MATRIX)
         {
             newExpression.append(token);
         }
@@ -167,7 +170,7 @@ void ExpressionNode::convertToRPN()
 
             if (stack.length() == 0)
             {
-                qDebug() << "PARENTHESIS OR COMMA ERROR";
+                throw std::runtime_error("Parenthesis or comma error");
                 return;
             }
         }
@@ -208,7 +211,7 @@ void ExpressionNode::convertToRPN()
 
             if (stack.length() == 0)
             {
-                qDebug() << "PARENTHESIS ERROR";
+                throw std::runtime_error("Parenthesis error");
                 return;
             }
 

@@ -31,8 +31,9 @@ ExpressionNode* AssignationNode::getExpression() const
     return this->expression;
 }
 
-
 QString AssignationNode::toString() const
 {
     return "VarNode name: " + this->getVariable()->toString() + " value: " + this->getExpression()->toString();
 }
+
+

@@ -23,7 +23,10 @@ SOURCES += main.cpp\
     lib/varNode.cpp \
     lib/expressionNode.cpp \
     lib/operator.cpp \
-    lib/node.cpp
+    lib/node.cpp \
+    lib/calculables/matrix.cpp \
+    lib/calculables/scalar.cpp \
+    about.cpp
 
 HEADERS  += mainwindow.hpp \
     detailedlist.hpp \
@@ -35,6 +38,10 @@ HEADERS  += mainwindow.hpp \
     lib/varNode.h \
     lib/expressionNode.h \
     lib/operator.h \
-    lib/node.h
+    lib/node.h \
+    lib/calculables/matrix.h \
+    lib/calculables/scalar.h \
+    about.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    about.ui

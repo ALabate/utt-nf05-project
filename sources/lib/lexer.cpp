@@ -51,7 +51,8 @@ QMap<TokenKind, QRegExp> Lexer::initializeTokens()
     map.insert(T_SUB, QRegExp("^(-)"));
     map.insert(T_MODULO, QRegExp("^(%)"));
     map.insert(T_POW, QRegExp("^(\\^)"));
-    map.insert(T_DOUBLE, QRegExp("^([0-9][\\.0-9]*)"));
+    map.insert(T_SCALAR, QRegExp("^([0-9][\\.0-9]*)"));
+    map.insert(T_MATRIX, QRegExp("^(\[.+\])"));
     map.insert(T_PARENTHESIS_LEFT, QRegExp("^(\\()"));
     map.insert(T_PARENTHESIS_RIGHT, QRegExp("^(\\))"));
     map.insert(T_STRING, QRegExp("^([A-z][A-z0-9_]*)"));
