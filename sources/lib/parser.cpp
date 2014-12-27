@@ -40,6 +40,10 @@ Calculable* Parser::run()
     else
     {
         Node *tree = this->generateTree(tokens);
+
+        if (tree == NULL)
+            return NULL;
+
         return tree->execute();
     }
 }
@@ -60,6 +64,7 @@ Node* Parser::generateTree(QList<Token> tokens)
         }
         else
         {
+            throw std::runtime_error("Operator alone");
             return NULL;
         }
     }
