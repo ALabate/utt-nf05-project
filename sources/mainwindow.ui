@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>680</width>
+    <height>451</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -51,29 +51,43 @@
        <bool>true</bool>
       </property>
       <widget class="QWidget" name="layoutWidget">
-       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1">
         <property name="spacing">
          <number>1</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetMaximumSize</enum>
         </property>
         <property name="leftMargin">
          <number>0</number>
         </property>
         <item>
          <widget class="QTextBrowser" name="textBrowser">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">border:0;</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="styleSheet">
+           <string notr="true">background-color:white;
+</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
       <widget class="DetailedList" name="detailedList">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>150</horstretch>
+        <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+         <horstretch>1</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
@@ -85,13 +99,19 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>300</width>
          <height>16777215</height>
         </size>
        </property>
        <property name="sizeIncrement">
         <size>
-         <width>1</width>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>150</width>
          <height>0</height>
         </size>
        </property>
@@ -105,23 +125,82 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>680</width>
      <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>Menu</string>
     </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionQuit"/>
    </widget>
-   <widget class="QMenu" name="menuDebug">
+   <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Debug</string>
+     <string>?</string>
     </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuEfface">
+    <property name="title">
+     <string>Effacer</string>
+    </property>
+    <addaction name="actionClearHist"/>
+    <addaction name="actionClearVars"/>
+    <addaction name="separator"/>
+    <addaction name="actionClearAll"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuDebug"/>
+   <addaction name="menuEfface"/>
+   <addaction name="menu"/>
   </widget>
+  <action name="actionAbout">
+   <property name="text">
+    <string>A propos</string>
+   </property>
+  </action>
+  <action name="actionTout_effacer">
+   <property name="text">
+    <string>Tout effacer</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Ouvrir</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Sauvegarder</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+  </action>
+  <action name="actionLa_liste_des_variables">
+   <property name="text">
+    <string>Effacer les variables</string>
+   </property>
+  </action>
+  <action name="actionClearHist">
+   <property name="text">
+    <string>Effacer l'historique</string>
+   </property>
+  </action>
+  <action name="actionClearAll">
+   <property name="text">
+    <string>Effacer tout</string>
+   </property>
+  </action>
+  <action name="actionClearVars">
+   <property name="text">
+    <string>Effacer les variables</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -132,5 +211,22 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>97</x>
+     <y>225</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>339</x>
+     <y>225</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

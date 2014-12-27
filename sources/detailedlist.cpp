@@ -56,14 +56,24 @@ void DetailedList::addElement(QString title, QString content, bool expanded)
 
 void DetailedList::deleteElement(QString title)
 {
-	//Delete all items
-	foreach(QListWidgetItem* item, list.values(title))
-	{
-		delete(this->itemWidget(item));
-		delete(item);
-	}
-	//Remove element from the data list
-	list.remove(title);
+    //Delete all items
+    foreach(QListWidgetItem* item, list.values(title))
+    {
+        delete(this->itemWidget(item));
+        delete(item);
+    }
+    //Remove element from the data list
+    list.remove(title);
+}
+
+void DetailedList::deleteAll()
+{
+    //Delete all items
+    foreach(QString item, list.keys())
+    {
+        emit elementDeleted(item);
+        deleteElement(item);
+    }
 }
 
 void DetailedList::UpdateElement(QString title, QString content)

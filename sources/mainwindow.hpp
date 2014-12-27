@@ -8,6 +8,7 @@
 #include <QString>
 #include <stdexcept>
 
+#include "about.h"
 #include "lib/parser.h"
 #include "lib/calculable.h"
 #include "lib/varNode.h"
@@ -36,6 +37,8 @@ class MainWindow : public QMainWindow
     private slots:
         void deleteVar(QString varName);
         void eval();
+        void clearHist();
+        void about();
 };
 
 #endif // MAINWINDOW_HPP

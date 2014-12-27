@@ -10,6 +10,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(eval()));
     connect(ui->detailedList, SIGNAL(elementDeleted(QString)), this, SLOT(deleteVar(QString)));
+    connect(ui->actionClearVars, SIGNAL(triggered()), ui->detailedList, SLOT(deleteAll()));
+    connect(ui->actionClearAll, SIGNAL(triggered()), ui->detailedList, SLOT(deleteAll()));
+    connect(ui->actionClearHist, SIGNAL(triggered()), this, SLOT(clearHist()));
+    connect(ui->actionClearAll, SIGNAL(triggered()), this, SLOT(clearHist()));
+    connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(about()));
 
     currentPos = 0;
 }
@@ -130,4 +135,17 @@ void MainWindow::eval()
     catch (...) {
         ui->textBrowser->append("<span style=\"color:red\">[Error] Caught an unknown exception</span>");
     }
+}
+
+void MainWindow::clearHist()
+{
+    ui->textBrowser->clear();
+    this->history.clear();
+    currentPos = 0;
+}
+
+void MainWindow::about()
+{
+    About* ab = new About();
+    ab->show();
 }

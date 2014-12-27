@@ -107,6 +107,11 @@ class DetailedList : public QListWidget
 		*/
 		void deleteTriggered();
 
+        /**
+         * @brief Delete all elements from the list
+         */
+        void deleteAll();
+
 	private:
 		/**
 		* @brief Help to know where come from a context menu
