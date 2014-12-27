@@ -47,10 +47,6 @@ Calculable* Parser::run()
 
 Node* Parser::generateTree(QList<Token> tokens)
 {
-    foreach (Token token, tokens)
-    {
-        qDebug() << token.getValue();
-    }
     if (tokens.length() == 1)
     {
         Token token = tokens[0];
