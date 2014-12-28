@@ -22,7 +22,6 @@ Calculable* ExpressionNode::execute()
 
     foreach (Token token, expression)
     {
-
         TokenKind kind = token.getKind();
 
         if (kind == T_STRING)
@@ -42,6 +41,7 @@ Calculable* ExpressionNode::execute()
 
                 if (var->getValue() == NULL)
                 {
+                    throw std::runtime_error("Var " + token.getValue().toStdString() + " is not defined.");
                     return NULL;
                 }
 
@@ -110,6 +110,33 @@ QString ExpressionNode::toString() const
 
 void ExpressionNode::convertToRPN()
 {
+    //We search for negatives numbers i.e "T_SUB" not used as operator
+    for (int i = 0; i < this->expression.length(); i++)
+    {
+        if (this->expression[i].getKind() == T_SUB)
+        {
+            //Beginning of expression || parenthesis to the left
+            if (i == 0 || this->expression[i-1].getKind() == T_PARENTHESIS_LEFT)
+            {
+                TokenKind rightTokenKind = this->expression[i+1].getKind();
+
+                //Scalar or string to the right
+                if (rightTokenKind == T_SCALAR || rightTokenKind == T_STRING) // || T_MATRIX ? => TODO T_CALCULABLE needs to be implemented
+                {
+                    QList<Token> newExpression;
+
+                    //Add "-1 *"
+                    newExpression.append(this->expression.mid(0, i));
+                    newExpression.append(Token(T_SCALAR, "-1"));
+                    newExpression.append(Token(T_MULTIPLY, "*"));
+                    newExpression.append(this->expression.mid(i+1, this->expression.length()));
+                    this->expression = newExpression;
+                }
+            }
+        }
+    }
+
+
     QMap<int, Operator*> operators = Operator::operators;
     QList<Token> newExpression;
     QList<Token> stack;

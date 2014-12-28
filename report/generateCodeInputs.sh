@@ -1,0 +1,1 @@
+find ../sources/ | grep ".cpp\|.h\|.hpp" | awk '{printf "\\lstinputlisting[language=C++]{%s}\n", $1}' > codeInputs.tex

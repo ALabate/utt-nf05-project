@@ -47,6 +47,10 @@ Calculable* Parser::run()
     else
     {
         Node *tree = this->generateTree(tokens);
+
+        if (tree == NULL)
+            return NULL;
+
         return tree->execute();
     }
 }
@@ -67,6 +71,7 @@ Node* Parser::generateTree(QList<Token> tokens)
         }
         else
         {
+            throw std::runtime_error("Operator alone");
             return NULL;
         }
     }
@@ -79,54 +84,9 @@ Node* Parser::generateTree(QList<Token> tokens)
             //Search for an assignement
             if (!assignementPos && tokens[i].getKind() == T_ASSIGNMENT)
             {
+                //found
                 assignementPos = i;
-            }
-            else if (tokens[i].getKind() == T_SUB)
-            {
-                //Beginning of expression
-                if (i == 0 || tokens[i-1].getKind() == T_PARENTHESIS_LEFT)
-                {
-                    if (tokens[i+1].getKind() == T_SCALAR)
-                    {
-                        tokens[i+1].setValue("-" + tokens[i+1].getValue());
-                        tokens.removeAt(i);
-                    }
-                    else if (tokens[i+1].getKind() == T_STRING)
-                    {
-                        if (!isFunction(tokens[i+1])) {
-                            //Var
-                            VarNode *var = VarNode::getVar(tokens[i+1].getValue(), this->registry);
-                            if (!var->getValue() == NULL)
-                            {
-                                tokens[i+1].setValue("-" + var->getValue()->getValue());
-                                tokens[i+1].setKind(T_SCALAR);
-                                tokens.removeAt(i);
-                            }
-                            else
-                            {
-                                throw std::runtime_error("Var " + tokens[i+1].getValue().toStdString() + " is not defined.");
-                            }
-                        }
-                        else
-                        {
-                            QList<Token> newTokens;
-                            newTokens.append(tokens.mid(0, i));
-                            newTokens.append(Token(T_SCALAR, "-1"));
-                            newTokens.append(Token(T_MULTIPLY, "*"));
-                            newTokens.append(tokens.mid(i+1, tokens.length()));
-                            tokens = newTokens;
-                        }
-                    }
-                }
-            }
-            else if (tokens[i].getKind() == T_STRING && !isFunction(tokens[i]))
-            {
-                VarNode *var = VarNode::getVar(tokens[i].getValue(), this->registry);
-                if (!var->getValue() == NULL)
-                {
-                    tokens[i+1].setValue("-" + var->getValue()->toString());
-                    tokens[i+1].setKind(T_SCALAR);
-                }
+                break;
             }
         }
 
@@ -136,6 +96,8 @@ Node* Parser::generateTree(QList<Token> tokens)
         }
         else
         {
+            //Create assignation node. structure : "varName := expression"
+            //
             QList<Token> varName = tokens.mid(0, assignementPos);
 
             if (varName.length() > 1 || varName[0].getKind() != T_STRING)
@@ -150,12 +112,8 @@ Node* Parser::generateTree(QList<Token> tokens)
 
             AssignationNode *assignationNode = new AssignationNode(varNode, right);
             return assignationNode;
-
         }
     }
-
-
-
 }
 
 
