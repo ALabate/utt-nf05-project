@@ -7,13 +7,15 @@
 #include <QDebug>
 #include <QList>
 
-#include "lib/calculable.h"
 #include "lib/lexer.h"
 #include "lib/token.h"
 #include "lib/expressionNode.h"
 #include "lib/assignationNode.h"
 #include "lib/varNode.h"
+#include "lib/calculable.h"
 
+
+class VarNode;
 
 class Parser : public QObject
 {

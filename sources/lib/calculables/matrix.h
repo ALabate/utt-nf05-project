@@ -2,7 +2,11 @@
 #define MATRIX_H
 
 #include <QList>
+#include <QStringList>
+#include <stdexcept>
+#include <QGenericMatrix>
 #include "../calculable.h"
+#include "../parser.h"
 
 class Matrix : public Calculable
 {
@@ -35,7 +39,19 @@ public:
     std::string getType() const;
 
 protected:
-   QList<QList<double> > value;
+    /**
+     * @brief Handle the matrix raw value
+     */
+    QVector< QVector<double>* >* value;
+    /**
+     * @brief Give the number of rows of the matrix
+     */
+    int rowCount;
+
+    /**
+     * @brief Give the number of columns of the matrix
+     */
+    int columnCount;
 };
 
 #endif // MATRIX_H
