@@ -20,12 +20,12 @@ public:
     Matrix(QString value);
 
 
-//    /**
-//     * @brief value setter
-//     *
-//     * @param newValue the value to set
-//     */
-//    void setValue(QString newValue);
+    /**
+     * @brief value setter
+     *
+     * @param newValue the value to set
+     */
+    void setValue(QString newValue);
 
 
 
