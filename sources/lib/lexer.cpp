@@ -21,6 +21,7 @@ QList<Token> Lexer::run()
 
         if (result.getValue() == "")
         {
+            throw std::runtime_error("Unable to parse the character " + QString::number(offset+1).toStdString());
             qWarning() << "Unable to parse the element, offset: " << offset;
             emit lexerError(this->source, offset);
             return tokens;
@@ -73,7 +74,6 @@ Token Lexer::match(QString line, int offset)
     {
         QRegExp value = Lexer::tokens.value(kind);
         int pos = value.indexIn(string);
-
         if (pos > -1)
         {
             QString match = value.cap(1);
