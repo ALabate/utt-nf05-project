@@ -43,7 +43,7 @@ QMap<TokenKind, QRegExp> Lexer::initializeTokens()
 {
     QMap<TokenKind, QRegExp> map;
 
-    map.insert(T_ASSIGNMENT, QRegExp("^(:=)"));
+    map.insert(T_ASSIGNMENT, QRegExp("^(=)"));
     map.insert(T_WHITESPACE, QRegExp("^(\\s+)"));
     map.insert(T_SOLVE, QRegExp("^(=)"));
     map.insert(T_MULTIPLY, QRegExp("^(\\*)"));
