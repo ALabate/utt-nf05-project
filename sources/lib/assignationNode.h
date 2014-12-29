@@ -11,6 +11,8 @@
 #include "lib/expressionNode.h"
 #include "lib/token.h"
 
+class ExpressionNode;
+class VarNode;
 
 class AssignationNode : public Node
 {

@@ -7,6 +7,7 @@
 #include <QRegExp>
 #include <QDebug>
 #include <QObject>
+#include <stdexcept>
 
 #include "lib/token.h"
 

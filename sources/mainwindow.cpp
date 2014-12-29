@@ -112,7 +112,7 @@ void MainWindow::eval()
     Parser parser(expression, this->registry);
 
     ui->textBrowser->append("<span style=\"color:#858282;text-decoration:underline;font-size:5px;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>");
-    ui->textBrowser->append("<span style=\"color:#A3A3A3;\">" + expression + " = </span>");
+    ui->textBrowser->append("<span style=\"color:#A3A3A3;\">" + expression + "</span>");
 
     try
     {

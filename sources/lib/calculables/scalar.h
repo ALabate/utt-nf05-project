@@ -2,13 +2,11 @@
 #define SCALAR_H
 
 #include "../calculable.h"
+#include "matrix.h"
 
 class Scalar : public Calculable
 {
 public:
-
-    //Inherit constructor
-//    using Calculable::Calculable;
 
     /**
      * @brief constructor
@@ -30,14 +28,14 @@ public:
      *
      * @return the value of the Calculable
      */
-    virtual QString getValue() const;
+    virtual QString getValue();
 
     /**
      * @brief value accessor
      *
      * @return the raw value of the Calculable
      */
-    virtual double getRawValue() const;
+    virtual double getRawValue();
 
     /**
      * @brief value setter
@@ -58,7 +56,7 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator*(Calculable const &a);
+    virtual Calculable* operator*(Calculable &a);
 
     /**
      * @brief overload operator / between two Calculable
@@ -66,7 +64,7 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator/(Calculable const &a);
+    virtual Calculable* operator/(Calculable &a);
 
     /**
      * @brief overload operator - between two Calculable
@@ -74,7 +72,7 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator+(Calculable const &a);
+    virtual Calculable* operator+(Calculable &a);
 
     /**
      * @brief overload operator + between two Calculable
@@ -82,14 +80,18 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator-(Calculable const &a);
-
+    virtual Calculable* operator-(Calculable &a);
 
 
     /**
-     * @brief Define the type of the element
+     * @brief Define the type of the element as a string
      */
-    std::string getType() const;
+     virtual std::string getTypeStr();
+
+    /**
+     * @brief Define the type of the element as a TokenKind from token.h
+     */
+     virtual TokenKind getType();
 
 protected:
     double value;

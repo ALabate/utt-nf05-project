@@ -6,7 +6,14 @@ Parser::Parser(QString source, QList<VarNode *> *registry)
 {
     this->source = source;
     this->lexer = new Lexer(source);
-    this->registry = registry;
+    if(registry != NULL)
+    {
+        this->registry = registry;
+    }
+    else
+    {
+        this->registry = new QList<VarNode *>;
+    }
 }
 
 
@@ -57,7 +64,7 @@ Node* Parser::generateTree(QList<Token> tokens)
         TokenKind kind = token.getKind();
 
 
-        if (kind == T_SCALAR || kind == T_STRING)
+        if (kind == T_SCALAR || kind == T_MATRIX || kind == T_STRING)
         {
             ExpressionNode* node = new ExpressionNode(tokens, this->registry);
             return node;
