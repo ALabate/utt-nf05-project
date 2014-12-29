@@ -2,6 +2,7 @@
 #define SCALAR_H
 
 #include "../calculable.h"
+#include "matrix.h"
 
 class Scalar : public Calculable
 {

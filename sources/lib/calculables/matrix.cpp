@@ -117,6 +117,25 @@ Calculable* Matrix::operator*(Calculable &a)
         }
         return out;
     }
+    else if(a.getType() == T_SCALAR)
+    {
+        Scalar& a2 = dynamic_cast<Scalar&>(a);
+        Matrix *out = new Matrix();
+
+        //Set new matrix size
+        out->setM(this->getM());
+        out->setN(this->getN());
+
+        //set values
+        for(int i=0; i < out->getM(); i++)
+        {
+            for(int j=0; j < out->getN() ; j++)
+            {
+                out->setCell(i, j, this->getCell(i, j) * a2.getRawValue());
+            }
+        }
+        return out;
+    }
     else
     {
         throw std::runtime_error("Cannot use the operator * between a " + a.getTypeStr() + " and a " + this->getTypeStr());
@@ -124,21 +143,81 @@ Calculable* Matrix::operator*(Calculable &a)
     return NULL;
 }
 
-Calculable* Matrix::operator/(Calculable &a)
-{
-    return NULL;
-}
-
 Calculable* Matrix::operator+(Calculable &a)
 {
+    if(this->getType() == a.getType())
+    {
+        Matrix& a2 = dynamic_cast<Matrix&>(a);
+        Matrix *out = new Matrix();
+
+        //Set new matrix size
+        if(this->getM() == a2.getM() && this->getN() == a2.getN())
+        {
+            out->setM(this->getM());
+            out->setN(this->getN());
+        }
+        else
+        {
+            throw std::runtime_error("Cannot sum a matrix "
+                                     + QString::number(a2.getM()).toStdString() + "x" + QString::number(a2.getN()).toStdString()
+                                     + " with a matrix "
+                                     + QString::number(this->getM()).toStdString() + "x" + QString::number(this->getN()).toStdString());
+        }
+
+        //set values
+        for(int i=0; i < out->getM(); i++)
+        {
+            for(int j=0; j < out->getN() ; j++)
+            {
+                out->setCell(i, j, this->getCell(i, j) + a2.getCell(i, j));
+            }
+        }
+        return out;
+    }
+    else
+    {
+        throw std::runtime_error("Cannot use the operator + between a " + a.getTypeStr() + " and a " + this->getTypeStr());
+    }
     return NULL;
 }
 
 Calculable* Matrix::operator-(Calculable &a)
 {
+    if(this->getType() == a.getType())
+    {
+        Matrix& a2 = dynamic_cast<Matrix&>(a);
+        Matrix *out = new Matrix();
+
+        //Set new matrix size
+        if(this->getM() == a2.getM() && this->getN() == a2.getN())
+        {
+            out->setM(this->getM());
+            out->setN(this->getN());
+        }
+        else
+        {
+            throw std::runtime_error("Cannot sum a matrix "
+                                     + QString::number(a2.getM()).toStdString() + "x" + QString::number(a2.getN()).toStdString()
+                                     + " with a matrix "
+                                     + QString::number(this->getM()).toStdString() + "x" + QString::number(this->getN()).toStdString());
+        }
+
+        //set values
+        for(int i=0; i < out->getM(); i++)
+        {
+            for(int j=0; j < out->getN() ; j++)
+            {
+                out->setCell(i, j, a2.getCell(i, j) - this->getCell(i, j));
+            }
+        }
+        return out;
+    }
+    else
+    {
+        throw std::runtime_error("Cannot use the operator - between a " + a.getTypeStr() + " and a " + this->getTypeStr());
+    }
     return NULL;
 }
-
 
 
 

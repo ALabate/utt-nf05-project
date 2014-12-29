@@ -48,14 +48,6 @@ public:
     Calculable* operator*(Calculable &a);
 
     /**
-     * @brief overload operator / between two Calculable
-     *
-     * @param a a Calculable
-     * @return a Calculable
-     */
-    Calculable* operator/(Calculable &a);
-
-    /**
      * @brief overload operator - between two Calculable
      *
      * @param a a Calculable
@@ -113,7 +105,6 @@ public:
      * @param value - The new raw value of the cellule
      */
     void setCell(const int i, const int j, const double value);
-
 
     /**
      * @brief Define the type of the element as a string

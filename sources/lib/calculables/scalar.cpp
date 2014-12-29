@@ -40,6 +40,10 @@ Calculable* Scalar::operator*(Calculable &a)
     {
         return new Scalar(dynamic_cast<Scalar&>(a).getRawValue() * this->value);
     }
+    else if(a.getType() == T_MATRIX)
+    {
+        return a.operator*(*this);
+    }
     else
     {
         throw std::runtime_error("Cannot use the operator * between a " + a.getTypeStr() + " and a " + this->getTypeStr());
@@ -52,6 +56,26 @@ Calculable* Scalar::operator/(Calculable &a)
     if(this->getType() == a.getType())
     {
         return new Scalar(dynamic_cast<Scalar&>(a).getRawValue() / this->value);
+    }
+    else if(a.getType() == T_MATRIX)
+    {
+
+        Matrix& a2 = dynamic_cast<Matrix&>(a);
+        Matrix *out = new Matrix();
+
+        //Set new matrix size
+        out->setM(a2.getM());
+        out->setN(a2.getN());
+
+        //set values
+        for(int i=0; i < out->getM(); i++)
+        {
+            for(int j=0; j < out->getN() ; j++)
+            {
+                out->setCell(i, j, a2.getCell(i, j) / this->getRawValue());
+            }
+        }
+        return out;
     }
     else
     {
