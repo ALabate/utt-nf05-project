@@ -2,11 +2,10 @@
 #include "parser.h"
 
 
-ExpressionNode::ExpressionNode(QList<Token> expression, QList<VarNode*>* registry)
+ExpressionNode::ExpressionNode(QList<Token> expression)
 {
     this->expression = expression;
     this->value = NULL;
-    this->registry = registry;
 
     convertToRPN();
 }
@@ -37,7 +36,7 @@ Calculable* ExpressionNode::execute()
             }
             else
             {
-                VarNode* var = VarNode::getVar(token.getValue(), this->registry);
+                VarNode* var = VarNode::getVar(token.getValue());
 
                 if (var->getValue() == NULL)
                 {

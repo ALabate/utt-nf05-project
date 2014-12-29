@@ -27,9 +27,8 @@ class Parser : public QObject
          * @brief constructor
          *
          * @param source QString to parse
-         * @param registry memory where to set the variables
          */
-        Parser(QString source, QList<VarNode *> *registry);
+        Parser(QString source);
 
         /**
          * @brief destructor
@@ -66,7 +65,6 @@ class Parser : public QObject
 
         QString source;
         Lexer *lexer;
-        QList<VarNode *> *registry;
 
 
     signals:

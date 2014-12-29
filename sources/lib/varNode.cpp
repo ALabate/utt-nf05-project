@@ -11,9 +11,9 @@ VarNode::VarNode(QString varName, Calculable* value)
 VarNode::~VarNode() {}
 
 
-VarNode* VarNode::getVar(QString reference, QList<VarNode *> *registry)
+VarNode* VarNode::getVar(QString reference)
 {
-    foreach (VarNode *node, *(registry))
+    foreach (VarNode *node, *(VarNode::getRegistry()))
     {
         if (node->getName() == reference)
         {
@@ -22,9 +22,23 @@ VarNode* VarNode::getVar(QString reference, QList<VarNode *> *registry)
     }
 
     VarNode *newNode = new VarNode(reference, NULL);
-    registry->append(newNode);
+    VarNode::getRegistry()->append(newNode);
     return newNode;
 }
+
+
+QList<VarNode *>* VarNode::getRegistry()
+{
+    return VarNode::registry;
+}
+
+
+QList<VarNode *>* VarNode::initializeRegistry()
+{
+    return new QList<VarNode *>();
+}
+
+QList<VarNode *>* VarNode::registry = VarNode::initializeRegistry();
 
 
 Calculable* VarNode::execute()

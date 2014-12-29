@@ -23,9 +23,9 @@ class ExpressionNode : public Node
         /**
          * @brief constructor
          *
-         * @param value a pointer to the Calculable
+         * @param expression the expression in tokens
          */
-        ExpressionNode(QList<Token> expression, QList<VarNode *>* registry);
+        ExpressionNode(QList<Token> expression);
 
         /**
          * @brief destructor
@@ -62,7 +62,6 @@ class ExpressionNode : public Node
          */
         bool isFunction(Token token);
 
-        QList<VarNode*>* registry;
         QList<Token> expression;
         Calculable* value;
 };

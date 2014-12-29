@@ -2,8 +2,7 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-	QMainWindow(parent),
-    registry(new QList<VarNode *>),
+    QMainWindow(parent),
 	ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -57,7 +56,7 @@ void MainWindow::memorySync()
 {
     QMultiMap<QString, QListWidgetItem*>* list = ui->detailedList->getList();
 
-    foreach (VarNode* currentVar, *(this->registry))
+    foreach (VarNode* currentVar, *(VarNode::getRegistry()))
     {
         QString varName = currentVar->getName();
 
@@ -90,13 +89,13 @@ void MainWindow::memorySync()
 
 void MainWindow::deleteVar(QString varName)
 {
-    for (int i = 0; i < this->registry->length(); i++)
+    for (int i = 0; i < VarNode::getRegistry()->length(); i++)
     {
-        VarNode* currentNode = this->registry->at(i);
+        VarNode* currentNode = VarNode::getRegistry()->at(i);
 
         if (currentNode->getName() == varName)
         {
-            this->registry->removeAt(i);
+            VarNode::getRegistry()->removeAt(i);
             return;
         }
     }
@@ -109,7 +108,7 @@ void MainWindow::eval()
         this->history.append(expression);
     this->currentPos = this->history.length();
     Calculable *value;
-    Parser parser(expression, this->registry);
+    Parser parser(expression);
 
     ui->textBrowser->append("<span style=\"color:#858282;text-decoration:underline;font-size:5px;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>");
     ui->textBrowser->append("<span style=\"color:#A3A3A3;\">" + expression + "</span>");
