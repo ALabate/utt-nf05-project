@@ -71,13 +71,6 @@ public:
      */
     Calculable* operator-(Calculable &a);
 
-
-    /**
-     * @brief Define the type of the element
-     */
-    std::string getType();
-
-
     /**
      * @brief Get the number of rows of the matrix
      *
@@ -120,6 +113,17 @@ public:
      * @param value - The new raw value of the cellule
      */
     void setCell(const int i, const int j, const double value);
+
+
+    /**
+     * @brief Define the type of the element as a string
+     */
+     virtual std::string getTypeStr();
+
+    /**
+     * @brief Define the type of the element as a TokenKind from token.h
+     */
+     virtual TokenKind getType();
 
 protected:
     /**

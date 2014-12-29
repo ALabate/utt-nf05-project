@@ -82,11 +82,15 @@ public:
     virtual Calculable* operator-(Calculable &a);
 
 
+    /**
+     * @brief Define the type of the element as a string
+     */
+     virtual std::string getTypeStr();
 
     /**
-     * @brief Define the type of the element
+     * @brief Define the type of the element as a TokenKind from token.h
      */
-    std::string getType();
+     virtual TokenKind getType();
 
 protected:
     double value;

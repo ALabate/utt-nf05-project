@@ -69,7 +69,7 @@ void Matrix::setValue(QString newValue)
             Calculable &colVal = *(parser.run());
 
             //Errors
-            if(colVal.getType() != "scalar") //TODO add T_SCALAR value to replace string
+            if(colVal.getType() != T_SCALAR)
                 throw std::runtime_error("Only scalar types can be inside matrix");
             else if(colVal.getValue() == NULL)
                 throw std::runtime_error("Unknown error happend during matrix computation");
@@ -119,7 +119,7 @@ Calculable* Matrix::operator*(Calculable &a)
     }
     else
     {
-        throw std::runtime_error("Cannot use the operator * between a " + a.getType() + " and a " + this->getType());
+        throw std::runtime_error("Cannot use the operator * between a " + a.getTypeStr() + " and a " + this->getTypeStr());
     }
     return NULL;
 }
@@ -185,7 +185,12 @@ void Matrix::setCell(const int i, const int j, const double value)
         this->value[i][j] = value;
 }
 
-std::string Matrix::getType()
+std::string Matrix::getTypeStr()
 {
     return "matrix";
+}
+
+TokenKind Matrix::getType()
+{
+    return T_MATRIX;
 }

@@ -42,7 +42,7 @@ Calculable* Scalar::operator*(Calculable &a)
     }
     else
     {
-        throw std::runtime_error("Cannot use the operator * between a " + a.getType() + " and a " + this->getType());
+        throw std::runtime_error("Cannot use the operator * between a " + a.getTypeStr() + " and a " + this->getTypeStr());
         return NULL;
     }
 }
@@ -55,7 +55,7 @@ Calculable* Scalar::operator/(Calculable &a)
     }
     else
     {
-        throw std::runtime_error("Cannot use the operator / between a " + a.getType() + " and a " + this->getType());
+        throw std::runtime_error("Cannot use the operator / between a " + a.getTypeStr() + " and a " + this->getTypeStr());
         return NULL;
     }
 }
@@ -68,7 +68,7 @@ Calculable* Scalar::operator-(Calculable &a)
     }
     else
     {
-        throw std::runtime_error("Cannot use the operator - between a " + a.getType() + " and a " + this->getType());
+        throw std::runtime_error("Cannot use the operator - between a " + a.getTypeStr() + " and a " + this->getTypeStr());
         return NULL;
     }
 }
@@ -80,14 +80,18 @@ Calculable* Scalar::operator+(Calculable &a)
     }
     else
     {
-        throw std::runtime_error("Cannot use the operator + between a " + a.getType() + " and a " + this->getType());
+        throw std::runtime_error("Cannot use the operator + between a " + a.getTypeStr() + " and a " + this->getTypeStr());
         return NULL;
     }
 }
 
 
-std::string Scalar::getType()
+std::string Scalar::getTypeStr()
 {
     return "scalar";
 }
 
+TokenKind Scalar::getType()
+{
+    return T_SCALAR;
+}
