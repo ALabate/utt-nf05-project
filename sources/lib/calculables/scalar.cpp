@@ -10,11 +10,11 @@ Scalar::Scalar(double value)
     this->setRawValue(value);
 }
 
-QString Scalar::getValue() const
+QString Scalar::getValue()
 {
     return QString::number(this->value);
 }
-double Scalar::getRawValue() const
+double Scalar::getRawValue()
 {
     return this->value;
 }
@@ -34,11 +34,11 @@ void Scalar::setRawValue(double newValue)
     this->value = newValue;
 }
 
-Calculable* Scalar::operator*(Calculable const &a)
+Calculable* Scalar::operator*(Calculable &a)
 {
     if(this->getType() == a.getType())
     {
-        return new Scalar(dynamic_cast<const Scalar&>(a).getRawValue() * this->value);
+        return new Scalar(dynamic_cast<Scalar&>(a).getRawValue() * this->value);
     }
     else
     {
@@ -47,11 +47,11 @@ Calculable* Scalar::operator*(Calculable const &a)
     }
 }
 
-Calculable* Scalar::operator/(Calculable const &a)
+Calculable* Scalar::operator/(Calculable &a)
 {
     if(this->getType() == a.getType())
     {
-        return new Scalar(dynamic_cast<const Scalar&>(a).getRawValue() / this->value);
+        return new Scalar(dynamic_cast<Scalar&>(a).getRawValue() / this->value);
     }
     else
     {
@@ -60,11 +60,11 @@ Calculable* Scalar::operator/(Calculable const &a)
     }
 }
 
-Calculable* Scalar::operator-(Calculable const &a)
+Calculable* Scalar::operator-(Calculable &a)
 {
     if(this->getType() == a.getType())
     {
-        return new Scalar(dynamic_cast<const Scalar&>(a).getRawValue() - this->value);
+        return new Scalar(dynamic_cast<Scalar&>(a).getRawValue() - this->value);
     }
     else
     {
@@ -72,11 +72,11 @@ Calculable* Scalar::operator-(Calculable const &a)
         return NULL;
     }
 }
-Calculable* Scalar::operator+(Calculable const &a)
+Calculable* Scalar::operator+(Calculable &a)
 {
     if(this->getType() == a.getType())
     {
-        return new Scalar(dynamic_cast<const Scalar&>(a).getRawValue() + this->value);
+        return new Scalar(dynamic_cast<Scalar&>(a).getRawValue() + this->value);
     }
     else
     {
@@ -86,7 +86,7 @@ Calculable* Scalar::operator+(Calculable const &a)
 }
 
 
-std::string Scalar::getType() const
+std::string Scalar::getType()
 {
     return "scalar";
 }

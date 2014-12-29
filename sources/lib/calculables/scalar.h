@@ -7,9 +7,6 @@ class Scalar : public Calculable
 {
 public:
 
-    //Inherit constructor
-//    using Calculable::Calculable;
-
     /**
      * @brief constructor
      *
@@ -30,14 +27,14 @@ public:
      *
      * @return the value of the Calculable
      */
-    virtual QString getValue() const;
+    virtual QString getValue();
 
     /**
      * @brief value accessor
      *
      * @return the raw value of the Calculable
      */
-    virtual double getRawValue() const;
+    virtual double getRawValue();
 
     /**
      * @brief value setter
@@ -58,7 +55,7 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator*(Calculable const &a);
+    virtual Calculable* operator*(Calculable &a);
 
     /**
      * @brief overload operator / between two Calculable
@@ -66,7 +63,7 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator/(Calculable const &a);
+    virtual Calculable* operator/(Calculable &a);
 
     /**
      * @brief overload operator - between two Calculable
@@ -74,7 +71,7 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator+(Calculable const &a);
+    virtual Calculable* operator+(Calculable &a);
 
     /**
      * @brief overload operator + between two Calculable
@@ -82,14 +79,14 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator-(Calculable const &a);
+    virtual Calculable* operator-(Calculable &a);
 
 
 
     /**
      * @brief Define the type of the element
      */
-    std::string getType() const;
+    std::string getType();
 
 protected:
     double value;

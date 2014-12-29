@@ -64,7 +64,7 @@ Node* Parser::generateTree(QList<Token> tokens)
         TokenKind kind = token.getKind();
 
 
-        if (kind == T_SCALAR || kind == T_STRING)
+        if (kind == T_SCALAR || kind == T_MATRIX || kind == T_STRING)
         {
             ExpressionNode* node = new ExpressionNode(tokens, this->registry);
             return node;

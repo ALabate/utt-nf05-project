@@ -33,7 +33,7 @@ class Calculable
          *
          * @return the value of the Calculable
          */
-        virtual QString getValue() const;
+        virtual QString getValue();
 
         /**
          * @brief value setter
@@ -47,7 +47,7 @@ class Calculable
          *
          * @return a QString representation of the Node
          */
-        virtual QString toString() const;
+        virtual QString toString();
 
         /**
          * @brief overload operator * between two Calculable
@@ -55,7 +55,7 @@ class Calculable
          * @param a a Calculable
          * @return a Calculable
          */
-        virtual Calculable* operator*(Calculable const &a);
+        virtual Calculable* operator*(Calculable &a);
 
         /**
          * @brief overload operator / between two Calculable
@@ -63,7 +63,7 @@ class Calculable
          * @param a a Calculable
          * @return a Calculable
          */
-        virtual Calculable* operator/(Calculable const &a);
+        virtual Calculable* operator/(Calculable &a);
 
         /**
          * @brief overload operator - between two Calculable
@@ -71,7 +71,7 @@ class Calculable
          * @param a a Calculable
          * @return a Calculable
          */
-        virtual Calculable* operator+(Calculable const &a);
+        virtual Calculable* operator+(Calculable &a);
 
         /**
          * @brief overload operator + between two Calculable
@@ -79,12 +79,12 @@ class Calculable
          * @param a a Calculable
          * @return a Calculable
          */
-        virtual Calculable* operator-(Calculable const &a);
+        virtual Calculable* operator-(Calculable &a);
 
         /**
          * @brief Define the type of the element
          */
-         virtual std::string getType() const = 0;
+         virtual std::string getType() = 0;
 
 };
 
