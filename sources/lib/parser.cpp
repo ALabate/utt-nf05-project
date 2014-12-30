@@ -17,7 +17,9 @@ Parser::Parser(QString source, QList<VarNode *> *registry)
 }
 
 
-Parser::~Parser() {}
+Parser::~Parser() {
+    delete this->lexer;
+}
 
 
 Calculable* Parser::run()
@@ -51,7 +53,9 @@ Calculable* Parser::run()
         if (tree == NULL)
             return NULL;
 
-        return tree->execute();
+        Calculable* res = tree->execute();
+        delete tree;
+        return res;
     }
 }
 

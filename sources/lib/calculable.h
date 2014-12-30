@@ -26,7 +26,7 @@ class Calculable
          * @brief destructor
          * @details [long description]
          */
-        ~Calculable();
+        virtual ~Calculable();
 
         /**
          * @brief value accessor
