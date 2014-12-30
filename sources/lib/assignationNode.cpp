@@ -8,7 +8,10 @@ AssignationNode::AssignationNode(VarNode *variable, ExpressionNode *expression)
 }
 
 
-AssignationNode::~AssignationNode() {}
+AssignationNode::~AssignationNode() {
+    // delete this->variable;
+    delete this->expression;
+}
 
 
 Calculable* AssignationNode::execute()

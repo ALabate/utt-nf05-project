@@ -22,12 +22,11 @@ class Calculable
          * @brief constructor
          */
         Calculable();
-
         /**
          * @brief destructor
          * @details [long description]
          */
-        ~Calculable();
+        virtual ~Calculable();
 
         /**
          * @brief value accessor
@@ -67,7 +66,7 @@ class Calculable
         virtual Calculable* operator/(Calculable &a);
 
         /**
-         * @brief overload operator - between two Calculable
+         * @brief overload operator + between two Calculable
          *
          * @param a a Calculable
          * @return a Calculable
@@ -75,12 +74,28 @@ class Calculable
         virtual Calculable* operator+(Calculable &a);
 
         /**
-         * @brief overload operator + between two Calculable
+         * @brief overload operator - between two Calculable
          *
          * @param a a Calculable
          * @return a Calculable
          */
         virtual Calculable* operator-(Calculable &a);
+
+        /**
+         * @brief overload operator % between two Calculable
+         *
+         * @param a a Calculable
+         * @return a Calculable
+         */
+        virtual Calculable* operator%(Calculable &a);
+
+        /**
+         * @brief overload operator ^ between two Calculable
+         *
+         * @param a a Calculable
+         * @return a Calculable
+         */
+        virtual Calculable* operator^(Calculable &a);
 
         /**
          * @brief Define the type of the element as a string

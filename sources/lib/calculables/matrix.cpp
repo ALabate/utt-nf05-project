@@ -8,6 +8,12 @@ Matrix::Matrix(QString value)
     this->setValue(value);
 }
 
+Matrix::Matrix(Matrix &value)
+{
+    N=-1;M=-1;
+    this->setValue(&value);
+}
+
 Matrix::Matrix()
 {
     N=-1;M=-1;
@@ -36,6 +42,19 @@ QString Matrix::getValue()
 
 
     return (out + ']');
+}
+
+QVector< QVector<double> > Matrix::getRawValue()
+{
+    return this->value;
+}
+
+void Matrix::setRawValue(QVector< QVector<double> > newValue)
+{
+    this->value = newValue;
+    //Update matrix size
+    this->setM(this->getM());
+    this->setN(this->getN());
 }
 
 void Matrix::setValue(QString newValue)
@@ -70,7 +89,10 @@ void Matrix::setValue(QString newValue)
 
             //Errors
             if(colVal.getType() != T_SCALAR)
-                throw std::runtime_error("Only scalar types can be inside matrix");
+            {
+                throw std::runtime_error("Only scalar types can be inside matrix not " + colVal.getTypeStr() + " (=" + colVal.getValue().toStdString() + ")");
+
+            }
             else if(colVal.getValue() == NULL)
                 throw std::runtime_error("Unknown error happend during matrix computation");
 
@@ -79,6 +101,13 @@ void Matrix::setValue(QString newValue)
 
         }
     }
+}
+
+void Matrix::setValue(Matrix *A)
+{
+    this->setM(A->getM());
+    this->setN(A->getN());
+    this->setRawValue(A->getRawValue());
 }
 
 Calculable* Matrix::operator*(Calculable &a)
@@ -218,8 +247,6 @@ Calculable* Matrix::operator-(Calculable &a)
     }
     return NULL;
 }
-
-
 
 int Matrix::getM() {
     return this->M;

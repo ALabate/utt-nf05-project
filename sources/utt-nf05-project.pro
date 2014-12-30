@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     lib/node.cpp \
     lib/calculables/matrix.cpp \
     lib/calculables/scalar.cpp \
-    about.cpp
+    about.cpp \
+    lib/matrixlib.cpp
 
 HEADERS  += mainwindow.hpp \
     detailedlist.hpp \
@@ -41,7 +42,8 @@ HEADERS  += mainwindow.hpp \
     lib/node.h \
     lib/calculables/matrix.h \
     lib/calculables/scalar.h \
-    about.h
+    about.h \
+    lib/matrixlib.h
 
 FORMS    += mainwindow.ui \
     about.ui

@@ -9,7 +9,9 @@ Parser::Parser(QString source)
 }
 
 
-Parser::~Parser() {}
+Parser::~Parser() {
+    delete this->lexer;
+}
 
 
 Calculable* Parser::run()
@@ -43,7 +45,9 @@ Calculable* Parser::run()
         if (tree == NULL)
             return NULL;
 
-        return tree->execute();
+        Calculable* res = tree->execute();
+        delete tree;
+        return res;
     }
 }
 
@@ -111,7 +115,14 @@ Node* Parser::generateTree(QList<Token> tokens)
 
 bool Parser::isFunction(Token token)
 {
-    QString value = token.getValue();
+    QString value = token.getValue().toLower();
 
-    return (value == "NORME" || value == "DET" || value == "SOLVE" || value == "TEST");
+    return (value == "cof"
+            || value == "det"
+            || value == "trans"
+            || value == "co"
+            || value == "i"
+            || value == "inv"
+            || value == "trace"
+            || value == "norm");
 }

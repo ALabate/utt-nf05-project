@@ -8,7 +8,9 @@ Operator::Operator(int precedence, Associativity associativity)
 }
 
 
-Operator::~Operator() {}
+Operator::~Operator()
+{
+}
 
 
 int Operator::getPrecedence()
