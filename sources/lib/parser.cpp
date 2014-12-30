@@ -2,18 +2,10 @@
 
 
 
-Parser::Parser(QString source, QList<VarNode *> *registry)
+Parser::Parser(QString source)
 {
     this->source = source;
     this->lexer = new Lexer(source);
-    if(registry != NULL)
-    {
-        this->registry = registry;
-    }
-    else
-    {
-        this->registry = new QList<VarNode *>;
-    }
 }
 
 
@@ -70,7 +62,7 @@ Node* Parser::generateTree(QList<Token> tokens)
 
         if (kind == T_SCALAR || kind == T_MATRIX || kind == T_STRING)
         {
-            ExpressionNode* node = new ExpressionNode(tokens, this->registry);
+            ExpressionNode* node = new ExpressionNode(tokens);
             return node;
         }
         else
@@ -96,7 +88,7 @@ Node* Parser::generateTree(QList<Token> tokens)
 
         if (!assignementPos)
         {
-            return new ExpressionNode(tokens, this->registry);
+            return new ExpressionNode(tokens);
         }
         else
         {
@@ -111,7 +103,7 @@ Node* Parser::generateTree(QList<Token> tokens)
             }
 
             ExpressionNode* right = (ExpressionNode*) generateTree(tokens.mid(assignementPos+1, tokens.length()-1));
-            VarNode *varNode = VarNode::getVar(varName[0].getValue(), this->registry);
+            VarNode *varNode = VarNode::getVar(varName[0].getValue());
 
 
             AssignationNode *assignationNode = new AssignationNode(varNode, right);

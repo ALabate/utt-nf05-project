@@ -30,7 +30,6 @@ class MainWindow : public QMainWindow
     private:
         void memorySync();
         int currentPos;
-        QList<VarNode *> *registry;
         QList<QString> history;
 		Ui::MainWindow *ui;
 

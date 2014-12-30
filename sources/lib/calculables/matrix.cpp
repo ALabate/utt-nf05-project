@@ -84,7 +84,7 @@ void Matrix::setValue(QString newValue)
         {
             //Parse cell
             //TODO GET VARS VALUES
-            Parser parser(cols[j], NULL);
+            Parser parser(cols[j]);
             Calculable &colVal = *(parser.run());
 
             //Errors

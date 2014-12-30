@@ -19,7 +19,7 @@ class VarNode : public Node
          * @brief constructor
          *
          * @param varName QString of the varName
-         * @param registry Map containing memory
+         * @param value value
          */
         VarNode(QString varName, Calculable *value);
 
@@ -39,7 +39,21 @@ class VarNode : public Node
          *
          * @return a pointer to the new/already existing VarNode
          */
-        static VarNode* getVar(QString reference, QList<VarNode *> *registry);
+        static VarNode* getVar(QString reference);
+
+        /**
+         * @brief global registry accessor
+         * @return the global registry
+         */
+        static QList<VarNode *>* getRegistry();
+
+    private:
+
+        /**
+         * @brief Init VarNode::registry
+         */
+        static QList<VarNode *>* initializeRegistry();
+        static QList<VarNode *>* registry;
 
 
     public:
@@ -82,7 +96,6 @@ class VarNode : public Node
     protected:
         QString varName;
         Calculable *value;
-        QMap<QString, Calculable *> registry;
 };
 
 #endif // VARNODE_H
