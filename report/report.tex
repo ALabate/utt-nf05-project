@@ -26,8 +26,15 @@
 
 \usepackage{lipsum}
 
-% Custom syntax highlighting
+% Display code
 \usepackage{listings}
+    % Captions style
+    \renewcommand{\lstlistingname}{Fichier}
+
+    % Listing list style
+    \renewcommand\lstlistlistingname{Fichiers source}
+
+    % Custom syntax highlighting
     \lstset{
         language=C++,
         aboveskip=3mm,
@@ -68,6 +75,7 @@
 \begin{document}
     \maketitle
     \tableofcontents
+    \lstlistoflistings
 
     \include{chapters/01-Introduction}
     \include{chapters/02-Choix_technologiques}

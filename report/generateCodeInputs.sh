@@ -1,1 +1,1 @@
-find ../sources/ | grep ".cpp\|.h\|.hpp" | awk '{printf "\\lstinputlisting[language=C++]{%s}\n", $1}' > codeInputs.tex
+ecfind ../sources/ | grep ".cpp\|.h\|.hpp" | awk '{split($1, a, "../sources/"); printf "\\lstinputlisting[language=C++, label=%s, caption=%s]{%s}\\newpage\n", a[2], a[2], $1}' >> codeInputs.tex
