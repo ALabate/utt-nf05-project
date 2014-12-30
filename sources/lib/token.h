@@ -15,13 +15,13 @@ enum TokenKind
     T_DIVIDE,
     T_SUM,
     T_SUB,
+    T_MODULO,
+    T_POW,
     T_SCALAR,
     T_MATRIX,
     T_PARENTHESIS_LEFT,
     T_PARENTHESIS_RIGHT,
     T_STRING,
-    T_MODULO,
-    T_POW,
     T_COMMA
 };
 

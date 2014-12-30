@@ -56,7 +56,7 @@ QMap<TokenKind, QRegExp> Lexer::initializeTokens()
     map.insert(T_MATRIX, QRegExp("^(\\[[^\\[\\]]+\\])"));
     map.insert(T_PARENTHESIS_LEFT, QRegExp("^(\\()"));
     map.insert(T_PARENTHESIS_RIGHT, QRegExp("^(\\))"));
-    map.insert(T_STRING, QRegExp("^([A-z][A-z0-9_]*)"));
+    map.insert(T_STRING, QRegExp("^([A-Za-z][A-Za-z0-9_]*)"));
     map.insert(T_COMMA, QRegExp("^(,)"));
 
     return map;

@@ -10,6 +10,7 @@ Calculable::Calculable()
 }
 
 
+
 Calculable::~Calculable() {}
 
 QString Calculable::getValue()
@@ -48,5 +49,17 @@ Calculable* Calculable::operator-(Calculable &a)
 
 Calculable* Calculable::operator+(Calculable &a)
 {
-    throw std::runtime_error("Cannot use the operator +  with an element of type " + getTypeStr());
+    throw std::runtime_error("Cannot use the operator + with an element of type " + getTypeStr());
+}
+
+
+Calculable* Calculable::operator%(Calculable &a)
+{
+    throw std::runtime_error("Cannot use the operator % with an element of type " + getTypeStr());
+}
+
+
+Calculable* Calculable::operator^(Calculable &a)
+{
+    throw std::runtime_error("Cannot use the operator ^ with an element of type " + getTypeStr());
 }

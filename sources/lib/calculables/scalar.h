@@ -3,6 +3,7 @@
 
 #include "../calculable.h"
 #include "matrix.h"
+#include <cmath>
 
 class Scalar : public Calculable
 {
@@ -22,33 +23,39 @@ public:
      */
     Scalar(double value);
 
+    /**
+     * @brief Copy constructor
+     *
+     * @param value the raw value
+     */
+    Scalar(Scalar &value);
 
     /**
      * @brief value accessor
      *
      * @return the value of the Calculable
      */
-    virtual QString getValue();
+    QString getValue();
 
     /**
      * @brief value accessor
      *
      * @return the raw value of the Calculable
      */
-    virtual double getRawValue();
+    double getRawValue();
 
     /**
      * @brief value setter
      *
      * @param newValue the value to set
      */
-    virtual void setValue(QString newValue);
+    void setValue(QString newValue);
     /**
      * @brief value setter
      *
      * @param newValue the value to set
      */
-    virtual void setRawValue(double newValue);
+    void setRawValue(double newValue);
 
     /**
      * @brief overload operator * between two Calculable
@@ -56,7 +63,7 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator*(Calculable &a);
+    Calculable* operator*(Calculable &a);
 
     /**
      * @brief overload operator / between two Calculable
@@ -64,15 +71,7 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator/(Calculable &a);
-
-    /**
-     * @brief overload operator - between two Calculable
-     *
-     * @param a a Calculable
-     * @return a Calculable
-     */
-    virtual Calculable* operator+(Calculable &a);
+    Calculable* operator/(Calculable &a);
 
     /**
      * @brief overload operator + between two Calculable
@@ -80,18 +79,42 @@ public:
      * @param a a Calculable
      * @return a Calculable
      */
-    virtual Calculable* operator-(Calculable &a);
+    Calculable* operator+(Calculable &a);
+
+    /**
+     * @brief overload operator - between two Calculable
+     *
+     * @param a a Calculable
+     * @return a Calculable
+     */
+    Calculable* operator-(Calculable &a);
+
+    /**
+     * @brief overload operator % between two Calculable
+     *
+     * @param a a Calculable
+     * @return a Calculable
+     */
+    Calculable* operator%(Calculable &a);
+
+    /**
+     * @brief overload operator ^ between two Calculable
+     *
+     * @param a a Calculable
+     * @return a Calculable
+     */
+    Calculable* operator^(Calculable &a);
 
 
     /**
      * @brief Define the type of the element as a string
      */
-     virtual std::string getTypeStr();
+     std::string getTypeStr();
 
     /**
      * @brief Define the type of the element as a TokenKind from token.h
      */
-     virtual TokenKind getType();
+     TokenKind getType();
 
 protected:
     double value;

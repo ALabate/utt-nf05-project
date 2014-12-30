@@ -12,6 +12,7 @@
 #include "lib/operator.h"
 #include "lib/calculables/scalar.h"
 #include "lib/calculables/matrix.h"
+#include "lib/matrixlib.h"
 
 
 class VarNode;

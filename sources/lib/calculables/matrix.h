@@ -7,6 +7,7 @@
 #include <QGenericMatrix>
 #include "../calculable.h"
 #include "../parser.h"
+#include "../token.h"
 
 class Matrix : public Calculable
 {
@@ -21,6 +22,13 @@ public:
     Matrix(QString value);
 
     /**
+     * @brief Copy constructor
+     *
+     * @param value - the matrix
+     */
+    Matrix(Matrix &value);
+
+    /**
      * @brief Construct a matrix of one per one with the value 0
      */
     Matrix();
@@ -32,12 +40,33 @@ public:
      */
     QString getValue();
 
-   /**
-    * @brief value setter
-    *
-    * @param newValue the value to set
-    */
-   void setValue(QString newValue);
+    /**
+     * @brief Raw value accessor
+     *
+     * @return the raw value of the Calculable
+     */
+    QVector< QVector<double> > getRawValue();
+
+    /**
+     * @brief value setter
+     *
+     * @param newValue the value to set
+     */
+    void setValue(QString newValue);
+
+    /**
+     * @brief raw value setter
+     *
+     * @param newValue the value to set
+     */
+    void setRawValue(QVector< QVector<double> > newValue);
+
+    /**
+     * @brief Copy setter
+     *
+     * @param newValue the value to set
+     */
+    void setValue(Matrix *newValue);
 
     /**
      * @brief overload operator * between two Calculable
@@ -109,12 +138,12 @@ public:
     /**
      * @brief Define the type of the element as a string
      */
-     virtual std::string getTypeStr();
+     std::string getTypeStr();
 
     /**
      * @brief Define the type of the element as a TokenKind from token.h
      */
-     virtual TokenKind getType();
+     TokenKind getType();
 
 protected:
     /**
