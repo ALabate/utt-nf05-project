@@ -171,6 +171,42 @@ Calculable* ExpressionNode::execute()
                         throw std::runtime_error("Help : norm(<b>Matrix</b> mat)");
                     }
                 }
+                //solve(Matrix|Scalar A, Matrix|Scalar B) : Solve a linear equation of type A*x=B
+                else if(token.getValue().toLower() == "solve")
+                {
+                    if(stack.length() >= 2
+                            && ((stack[stack.length()-1]->getType() == T_MATRIX && stack[stack.length()-2]->getType() == T_MATRIX)
+                            || (stack[stack.length()-1]->getType() == T_SCALAR && stack[stack.length()-2]->getType() == T_SCALAR)))
+                    {
+                        //Scalar
+                        if(stack[stack.length()-1]->getType() == T_SCALAR)
+                        {
+                            //Get params
+                            Calculable &B = *(stack[stack.length()-1]);
+                            stack.removeLast();
+                            Calculable &A = *(stack[stack.length()-1]);
+                            stack.removeLast();
+                            //Result
+                            stack.append(A/B);
+                        }
+                        else
+                        {
+                            //Get params
+                            Calculable &B = *(stack[stack.length()-1]);
+                            stack.removeLast();
+                            //Get params
+                            Matrix *A = dynamic_cast<Matrix*>(stack[stack.length()-1]);
+                            stack.removeLast();
+                            //Result
+                            stack.append(B*(*MatrixLib::inv(A)));
+
+                        }
+                    }
+                    else
+                    {
+                        throw std::runtime_error("Help : Solve a linear equation of type A*x=B<br/>solve(<b>Matrix</b> A, <b>Matrix</b> B)<br/>solve(<b>Scalar</b> A, <b>Scalar</b> B)");
+                    }
+                }
             }
             else
             {

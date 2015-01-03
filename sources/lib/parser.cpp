@@ -120,5 +120,6 @@ bool Parser::isFunction(Token token)
             || value == "i"
             || value == "inv"
             || value == "trace"
-            || value == "norm");
+            || value == "norm"
+            || value == "solve");
 }
