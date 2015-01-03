@@ -29,7 +29,7 @@ QString Matrix::getValue()
     for(int i=0; i < this->getM(); i++)
     {
         if(i != 0)
-            out += " !\n ";
+            out += " |\n ";
 
         for(int j=0; j < this->getN(); j++)
         {
@@ -65,7 +65,7 @@ void Matrix::setValue(QString newValue)
     newValue.remove(']');
 
     //Parse matrix format a;b!c;d
-    QStringList rows = newValue.split('!');
+    QStringList rows = newValue.split(QRegExp("[!\\|]"));
     this->setM(rows.size());
 
     //iterate over rows
