@@ -9,9 +9,7 @@ Parser::Parser(QString source)
 }
 
 
-Parser::~Parser() {
-    delete this->lexer;
-}
+Parser::~Parser() {}
 
 
 Calculable* Parser::run()
@@ -45,9 +43,7 @@ Calculable* Parser::run()
         if (tree == NULL)
             return NULL;
 
-        Calculable* res = tree->execute();
-        delete tree;
-        return res;
+        return tree->execute();
     }
 }
 
