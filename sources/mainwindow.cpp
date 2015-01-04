@@ -272,6 +272,7 @@ void MainWindow::open()
         }
 
     }
+    this->currentPos = this->history.length();
 
     //Write html content to the output
     ui->textBrowser->setHtml(html);
