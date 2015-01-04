@@ -140,7 +140,7 @@ Matrix *MatrixLib::inv(Matrix *source)
     //Det and check if invertible
     double det = MatrixLib::determinant(source)->getRawValue();
     if(det == 0)
-        throw std::runtime_error("Matrix not invertible because determinant is equal to 0");
+        throw std::runtime_error("Matrix not invertible because determinant is 0");
 
     Matrix *out = new Matrix();
     out->setM(source->getM());
