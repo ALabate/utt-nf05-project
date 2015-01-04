@@ -27,12 +27,13 @@
                 \label{Représentation arbre syntaxique}
             \end{figure}
 
+        \newpage
+
         \paragraph{}
             Une fois l'expression analysée, il faut l'executer. Le parser passe en revue tous les tokens en essayant de reconnaître des ``motifs'' d'expression cohérentes. Il les assemble ensuite en Node (voir \ref{lib/node.h}), qui sont comme leur nom l'indique des noeud d'expression. Un exemple de noeud est le noeud d'assignation, ayant comme motif un nom de variable et une expression séparée par un signe égal.
 
-            \newpage
 
-            \\ Le code est pensé de manière modulaire, il est ainsi possible de rajouter d'autres types de noeud comme des noeuds conditionnels par exemple, et ainsi étendre l'analyseur d'expression en un véritable interpréteur de language.
+            Le code est pensé de manière modulaire, il est ainsi possible de rajouter d'autres types de noeud comme des noeuds conditionnels par exemple, et ainsi étendre l'analyseur d'expression en un véritable interpréteur de language.
             \\ Les Nodes créées, elles sont ensuite assemblées en arbre et ensuite executée. Nous allons maintenant voir par quelle méthode les  expressions sont interprétées.
 
     \section{Execution des expression: Notation Polonaise Inversée}
