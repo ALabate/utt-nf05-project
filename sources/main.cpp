@@ -6,7 +6,12 @@
  *
  * \section intro_sec Introduction
  *
- * This our project documentation. But this project doesn't have any name currently.
+ * This is the documentation of our Matrix Calculator.
+ *
+ * This project has been made by Axel Mousset and Aurélien Labate
+ * when they were following the NF05 course (Introduction to C)
+ * at the University of Technology of Troyes.
+ *
 */
 
 int main(int argc, char *argv[])
