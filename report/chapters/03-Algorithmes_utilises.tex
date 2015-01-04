@@ -16,7 +16,7 @@
             \\ Le problème a été traité de manière traditionnelle, une utilisant le design pattern lexer/Parser.
             \\ Le lexer, est ``l'analyseur lexical''. Il transforme une série de caractères en ``tokens'', qui sont des chaînes de caractères définies au préalable.
             \\ Ainsi, un mot est un token ``T\_STRING'', un chiffre est un token ``T\_SCALAR'' ou encore une matrice un ``T\_MATRIX''. Au niveau du code, ces tokens sont représentés par des objets (voir \ref{lib/token.h}) ayant chacun la valeur de la chaine de caractère reconnue associée à leur type. Exemple : le chiffre 3 est un objet Token de type ``T\_SCALAR'' et de valeur ``3''.
-            \\ La reconnaissance de ces tokens se fait par regex successive sur la chaine de caractère ce que l'une d'entre elle fonctionne.
+            \\ La reconnaissance de ces tokens se fait par regex\footnote{Expression régulière, permet de retrouver des motifs dans une chaine de caractère} successive sur la chaine de caractère ce que l'une d'entre elle fonctionne.
       
             \begin{figure}[h]
                 \begin{center}

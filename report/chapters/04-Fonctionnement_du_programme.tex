@@ -27,13 +27,19 @@
             \\ De la même manière, un état précédent du programme peut être récuperé en ouvrant un fichier avec le raccourcis Ctrl+O ou dans le menu ``Menu''.
 
         \paragraph{}
-            L'assignation à une variable se fait de la manière suivante: \[nomVariable = [valeur]\] 
+            Les opérateurs mathématiques de bases sont utilisables, à savoir la multiplication et la division, la somme et la différence, et la puissance (de caractères réspectifs * / + - et ^).
+            \\L'assignation à une variable se fait de la manière suivante: \[nomVariable = [valeur]\] 
             \\ La valeur peut être un scalaire, la résultante d'une fonction ou une matrice.
             \\ Les fonctions implémentées sont :
             \begin{enumerate}
                 \item Le déterminant d'une matrice \[det([matrice])\]
                 \item L'inverse d'une matrice \[inv([matrice])\]
                 \item La résolution d'équation linéaires (scalaires ou matricielles): \[solve([A], [B])\] 
+                \item La création de matrice identitée \[I([taille])\]
+                \item Le cofacteur d'une matrice \[cof([matrice])\]
+                \item La comatrice d'une matrice \[co([matrice])\]
+                \item La transposée d'une matrice \[trans([matrice])\]
+                \item La norme d'une matrice \[norm([matrice])\]
             \end{enumerate}
             La syntaxe de définition d'une matrice est la suivante (pour une matrice 2x2)
                 \[ [ [valeur]; [valeur] | [valeur]; [valeur] ]\]
