@@ -121,7 +121,7 @@ void MainWindow::eval()
         memorySync();
         if (value != NULL)
         {
-            ui->textBrowser->append(value->getValue());
+            ui->textBrowser->append("<span style=\"color:black;\">" + (value->getValue().replace('\n', "<br/>").replace(' ', "&nbsp;")) + "</span>");
             ui->lineEdit->setText("");
         }
         else
@@ -134,7 +134,7 @@ void MainWindow::eval()
         ui->textBrowser->append("<span style=\"color:red\">[Error] " + QString::fromStdString(e.what()) + "</span>");
     }
     catch (...) {
-        ui->textBrowser->append("<span style=\"color:red\">[Error] Caught an unknown exception</span>");
+        ui->textBrowser->append("<div style=\"color:red\">[Error] Caught an unknown exception</div>");
     }
     //Scroll to the bottom of the ouput
     ui->textBrowser->moveCursor(QTextCursor::End);
