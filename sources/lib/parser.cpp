@@ -92,7 +92,7 @@ Node* Parser::generateTree(QList<Token> tokens)
             //
             QList<Token> varName = tokens.mid(0, assignementPos);
 
-            if (varName.length() > 1 || varName[0].getKind() != T_STRING)
+            if (varName.length() > 1 || varName[0].getKind() != T_STRING || (assignementPos >= tokens.length()-1))
             {
                 throw std::runtime_error("Invalid syntax for assignment");
                 return NULL;
