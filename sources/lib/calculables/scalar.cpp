@@ -164,9 +164,7 @@ Calculable* Scalar::operator^(Calculable &a)
             //set values
             for(double i = 1; i < this->getRawValue(); i++)
             {
-                Matrix *tmp = dynamic_cast<Matrix*>(out*a2);
-                out.setValue(tmp);
-                delete tmp;
+                out.setValue(dynamic_cast<Matrix*>(out*a2));
             }
 
             return (new Matrix(out));

@@ -44,13 +44,11 @@ Scalar *MatrixLib::cofactor(Matrix *source, int i, int j)
             sub->setCell(i_set, j_set, source->getCell(i_get, j_get));
         }
     }
-    qDebug() << "sub: \n" << sub->getValue();
 
     //Calculate sign
     int sign = 1;
     if((i+j)%2 != 0)
         sign = -1;
-    qDebug() << "Sign: " << sign;
 
     //Calculate det of submatrix
     Scalar *out = MatrixLib::determinant(sub);
@@ -61,7 +59,6 @@ Scalar *MatrixLib::cofactor(Matrix *source, int i, int j)
 Scalar *MatrixLib::determinant(Matrix *source)
 {
 
-    qDebug() << "Source: \n" << source->getValue();
     //Checks
     if(source->getM() < 1)
         throw std::runtime_error("Cannot calculate determinant of an empty matrix");
@@ -71,13 +68,11 @@ Scalar *MatrixLib::determinant(Matrix *source)
     //Check if case need recursivity
     if(source->getM() == 1)
     {
-        qDebug() << "res: \n" << source->getCell(0,0);
         return new Scalar(source->getCell(0,0));
     }
     else if(source->getM() == 2)
     {
 
-        qDebug() << "res: \n" << (source->getCell(0,0)*source->getCell(1,1) - source->getCell(0,1)*source->getCell(1,0));
         return new Scalar(source->getCell(0,0)*source->getCell(1,1) - source->getCell(0,1)*source->getCell(1,0));
     }
     else
@@ -145,7 +140,7 @@ Matrix *MatrixLib::inv(Matrix *source)
     //Det and check if invertible
     double det = MatrixLib::determinant(source)->getRawValue();
     if(det == 0)
-        throw std::runtime_error("Matrix not invertible because determinant is equal to 0");
+        throw std::runtime_error("Matrix not invertible because determinant is 0");
 
     Matrix *out = new Matrix();
     out->setM(source->getM());
@@ -195,6 +190,5 @@ double MatrixLib::norm(Matrix *source)
         for(int i=0; i<source->getM(); i++)
             sum += source->getCell(i, 0)*source->getCell(i, 0);
     }
-    qDebug() << sum;
     return sqrt(sum);
 }

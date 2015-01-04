@@ -9,9 +9,7 @@ Parser::Parser(QString source)
 }
 
 
-Parser::~Parser() {
-    delete this->lexer;
-}
+Parser::~Parser() {}
 
 
 Calculable* Parser::run()
@@ -45,9 +43,7 @@ Calculable* Parser::run()
         if (tree == NULL)
             return NULL;
 
-        Calculable* res = tree->execute();
-        delete tree;
-        return res;
+        return tree->execute();
     }
 }
 
@@ -96,7 +92,7 @@ Node* Parser::generateTree(QList<Token> tokens)
             //
             QList<Token> varName = tokens.mid(0, assignementPos);
 
-            if (varName.length() > 1 || varName[0].getKind() != T_STRING)
+            if (varName.length() > 1 || varName[0].getKind() != T_STRING || (assignementPos >= tokens.length()-1))
             {
                 throw std::runtime_error("Invalid syntax for assignment");
                 return NULL;
@@ -124,5 +120,6 @@ bool Parser::isFunction(Token token)
             || value == "i"
             || value == "inv"
             || value == "trace"
-            || value == "norm");
+            || value == "norm"
+            || value == "solve");
 }

@@ -80,7 +80,12 @@ class DetailedList : public QListWidget
 
         QMultiMap<QString, QListWidgetItem*>* getList();
 
+    public slots:
 
+        /**
+         * @brief Delete all elements from the list
+         */
+        void deleteAll();
 	protected slots:
 		/**
 		* @brief Slot triggered when a click is made on an item
@@ -106,11 +111,6 @@ class DetailedList : public QListWidget
 		* Slot triggered when a click is made on the delete button of the context menu. This will emit the but public elementDeleted() signal and then remove the element from the list.
 		*/
 		void deleteTriggered();
-
-        /**
-         * @brief Delete all elements from the list
-         */
-        void deleteAll();
 
 	private:
 		/**

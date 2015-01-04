@@ -126,7 +126,7 @@
      <x>0</x>
      <y>0</y>
      <width>680</width>
-     <height>27</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -161,29 +161,25 @@
     <string>A propos</string>
    </property>
   </action>
-  <action name="actionTout_effacer">
-   <property name="text">
-    <string>Tout effacer</string>
-   </property>
-  </action>
   <action name="actionOpen">
    <property name="text">
     <string>Ouvrir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionSave">
    <property name="text">
     <string>Sauvegarder</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionQuit">
    <property name="text">
     <string>Quitter</string>
-   </property>
-  </action>
-  <action name="actionLa_liste_des_variables">
-   <property name="text">
-    <string>Effacer les variables</string>
    </property>
   </action>
   <action name="actionClearHist">
@@ -219,8 +215,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>97</x>
-     <y>225</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>339</x>

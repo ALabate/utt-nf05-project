@@ -34,7 +34,6 @@ Calculable* ExpressionNode::execute()
                     {
                         //Get params
                         Matrix* mat = dynamic_cast<Matrix*>(stack[stack.length()-1]);
-                        delete(&(stack.last()));
                         stack.removeLast();
                         //Calculate
                         stack.append(MatrixLib::determinant(mat));
@@ -54,13 +53,10 @@ Calculable* ExpressionNode::execute()
                     {
                         //Get params
                         Scalar* j = dynamic_cast<Scalar*>(stack[stack.length()-1]);
-                        delete(&(stack.last()));
                         stack.removeLast();
                         Scalar* i = dynamic_cast<Scalar*>(stack[stack.length()-1]);
-                        delete(&(stack.last()));
                         stack.removeLast();
                         Matrix* mat = dynamic_cast<Matrix*>(stack[stack.length()-1]);
-                        delete(&(stack.last()));
                         stack.removeLast();
 
                         //Checks
@@ -84,7 +80,6 @@ Calculable* ExpressionNode::execute()
                     {
                         //Get params
                         Matrix* mat = dynamic_cast<Matrix*>(stack[stack.length()-1]);
-                        delete(&(stack.last()));
                         stack.removeLast();
                         //Calculate
                         stack.append(MatrixLib::transpose(mat));
@@ -101,7 +96,6 @@ Calculable* ExpressionNode::execute()
                     {
                         //Get params
                         Matrix* mat = dynamic_cast<Matrix*>(stack[stack.length()-1]);
-                        delete(&(stack.last()));
                         stack.removeLast();
                         //Calculate
                         stack.append(MatrixLib::coMatrix(mat));
@@ -118,7 +112,6 @@ Calculable* ExpressionNode::execute()
                     {
                         //Get params
                         Scalar* n = dynamic_cast<Scalar*>(stack[stack.length()-1]);
-                        delete(&(stack.last()));
                         stack.removeLast();
                         //Calculate
                         stack.append(MatrixLib::identity(n->getRawValue()));
@@ -135,7 +128,6 @@ Calculable* ExpressionNode::execute()
                     {
                         //Get params
                         Matrix *mat = dynamic_cast<Matrix*>(stack[stack.length()-1]);
-                        delete(&(stack.last()));
                         stack.removeLast();
                         //Calculate
                         stack.append(MatrixLib::inv(mat));
@@ -152,7 +144,6 @@ Calculable* ExpressionNode::execute()
                     {
                         //Get params
                         Matrix *mat = dynamic_cast<Matrix*>(stack[stack.length()-1]);
-                        delete(&(stack.last()));
                         stack.removeLast();
                         //Calculate
                         Scalar *tmp = new Scalar(MatrixLib::trace(mat));
@@ -170,7 +161,6 @@ Calculable* ExpressionNode::execute()
                     {
                         //Get params
                         Matrix *mat = dynamic_cast<Matrix*>(stack[stack.length()-1]);
-                        delete(&(stack.last()));
                         stack.removeLast();
                         //Calculate
                         Scalar *tmp = new Scalar(MatrixLib::norm(mat));
@@ -179,6 +169,42 @@ Calculable* ExpressionNode::execute()
                     else
                     {
                         throw std::runtime_error("Help : norm(<b>Matrix</b> mat)");
+                    }
+                }
+                //solve(Matrix|Scalar A, Matrix|Scalar B) : Solve a linear equation of type A*x=B
+                else if(token.getValue().toLower() == "solve")
+                {
+                    if(stack.length() >= 2
+                            && ((stack[stack.length()-1]->getType() == T_MATRIX && stack[stack.length()-2]->getType() == T_MATRIX)
+                            || (stack[stack.length()-1]->getType() == T_SCALAR && stack[stack.length()-2]->getType() == T_SCALAR)))
+                    {
+                        //Scalar
+                        if(stack[stack.length()-1]->getType() == T_SCALAR)
+                        {
+                            //Get params
+                            Calculable &B = *(stack[stack.length()-1]);
+                            stack.removeLast();
+                            Calculable &A = *(stack[stack.length()-1]);
+                            stack.removeLast();
+                            //Result
+                            stack.append(A/B);
+                        }
+                        else
+                        {
+                            //Get params
+                            Calculable &B = *(stack[stack.length()-1]);
+                            stack.removeLast();
+                            //Get params
+                            Matrix *A = dynamic_cast<Matrix*>(stack[stack.length()-1]);
+                            stack.removeLast();
+                            //Result
+                            stack.append(B*(*MatrixLib::inv(A)));
+
+                        }
+                    }
+                    else
+                    {
+                        throw std::runtime_error("Help : Solve a linear equation of type A*x=B<br/>solve(<b>Matrix</b> A, <b>Matrix</b> B)<br/>solve(<b>Scalar</b> A, <b>Scalar</b> B)");
                     }
                 }
             }
@@ -212,11 +238,9 @@ Calculable* ExpressionNode::execute()
             }
 
             Calculable &a = *(stack[stack.length()-1]);
-            delete(&(stack.last()));
             stack.removeLast();
 
             Calculable &b = *(stack[stack.length()-1]);
-            delete(&(stack.last()));
             stack.removeLast();
 
             switch (token.getKind())
@@ -322,7 +346,6 @@ void ExpressionNode::convertToRPN()
             while (stack.length () != 0 && stack[stack.length()-1].getKind() != T_PARENTHESIS_LEFT)
             {
                 newExpression.append(stack[stack.length()-1]);
-                delete(&(stack.last()));
                 stack.removeLast();
             }
 
@@ -346,7 +369,6 @@ void ExpressionNode::convertToRPN()
                    currentOperator->getPrecedence() - stackOperator->getPrecedence() < 0))
                 {
                     newExpression.append(stack[stack.length()-1]);
-                    delete(&(stack.last()));
                     stack.removeLast();
                     continue;
                 }
@@ -365,7 +387,6 @@ void ExpressionNode::convertToRPN()
             while (stack.length() != 0 && stack[stack.length()-1].getKind() != T_PARENTHESIS_LEFT)
             {
                 newExpression.append(stack[stack.length()-1]);
-                delete(&(stack.last()));
                 stack.removeLast();
             }
 
@@ -375,13 +396,11 @@ void ExpressionNode::convertToRPN()
                 return;
             }
 
-            delete(&(stack.last()));
             stack.removeLast();
 
             if (stack.length() != 0 && stack[stack.length()-1].getKind() == T_STRING && Parser::isFunction(stack[stack.length()-1]))
             {
                 newExpression.append(stack[stack.length()-1]);
-                delete(&(stack.last()));
                 stack.removeLast();
             }
         }
@@ -394,7 +413,6 @@ void ExpressionNode::convertToRPN()
     while (stack.length() != 0)
     {
         newExpression.append(stack[stack.length()-1]);
-        delete(&(stack.last()));
         stack.removeLast();
     }
 
