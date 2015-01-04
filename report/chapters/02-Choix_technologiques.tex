@@ -1,6 +1,8 @@
 \chapter{Choix technologiques}
+    Le choix des technologies utilisée pour le développement du logiciel a été le point d'entrée du projet. Les enjeux sont cruciaux, car la vitesse du développement et la productivité des développeurs dépend du choix des outils qui sont soit déjà connus, soit à apprendre. Le tout a donc été de trouver un accord au sein du binôme sur les technologies à employer. Cette étape de brainstorming a duré environ deux heures.
+
     \section{Language C++}
-        La première étape dans ce projet a été de choisir le language dans lequel il serait développé: la contrainte qui nous était imposée 
+        La première étape dans cette reflexion a été de choisir le language dans lequel il serait développé: la contrainte qui nous était imposée 
         était le choix entre le language C et ses dérivés.
         \\ Le C est un language de programmation généraliste et bas niveau\footnote{Près de la machine. En C beaucoup de résponsabilités sont laissées au développeur, comme l'allocation mémoire} inventé dans les années 1970. C'est un des language les plus utilisé 
         au monde, pionnier du monde informatique, qui a inspiré nombre d'autre language et donné naissance à des dérivés comme le C\#\footnote{Prononcer ``C sharp''}, 
@@ -12,11 +14,10 @@
         de programmation}
         graphiques disponibles.
 
-
     \section{Framework Qt}
         \begin{figure}[h]
             \begin{center}
-                \includegraphics[scale=0.3]{Qt.png}
+                \includegraphics[scale=0.25]{Qt.png}
             \end{center}
 
             \caption{Logo de Qt}
@@ -25,7 +26,10 @@
 
         La motivation derrière l'utilisation de Qt résulte tout d'abord de la volonté d'avoir un programme multi-plateforme. Le développement du programme étant fait dans un environnement linux, et avec une majorité d'ordinateurs tournant sous windows, la nécessité d'avoir un programme portatif était évidente.
         \\ Un rapide tour d'horizon sur les différents frameworks/libraries multi-plateformes montre qu'il n'y a essentiellement que trois grand projet: WxWidgets, GTK et Qt.
-        \\ L'avantage de Qt par rapport a ses concurrents est qu'il jouit d'une très large communauté, et est maintenu par Nokia. C'est un framework très moderne allant jusqu'à étendre le C++ pour lui apporter des fonctionnalités non natives. Il permet donc le développement dans un environnement plus haut niveau, au détriment des performances du programme, que nous avons jugées négligeables étant donnée l'échelle du programme.
+
+    \newpage
+        
+        L'avantage de Qt par rapport a ses concurrents est qu'il jouit d'une très large communauté, et est maintenu par Nokia. C'est un framework très moderne allant jusqu'à étendre le C++ pour lui apporter des fonctionnalités non natives. Il permet donc le développement dans un environnement plus haut niveau, au détriment des performances du programme, que nous avons jugées négligeables étant donnée l'échelle du programme.
         \\ Enfin, en plus de faciliter le développement du coeur du programme, Qt à l'avantage de proposer un IDE\footnote{Integrated development environment}, Qt Creator, qui dispose d'une auto-complétion très poussée ainsi qu'un éditeur WYSIWYG\footnote{What you see is what you get - il n'y a qu'à dessiner pour obtenir ce que l'ont veux} d'interface graphique.
 
         \begin{figure}[h]
@@ -45,7 +49,9 @@
         \paragraph{}
             Bien que n'étant qu'en binôme, travailler en équipe sur un même code sans outil approprié se révèle souvent être un enfer. En effet, la modification d'un fichier peut entrainer des incompatibilités et des bugs dans le reste du programme. Et c'est à ce genre de problèmes que vient répondre un gestionnaire de version.
             \\ Tout comme les frameworks graphiques, il existe plusieurs solutions sur le marché, on retiendra essentiellement svn et git. Le choix de git fût immédiat car maitrisé par l'ensemble de l'équipe. 
-            \\ Git a été créé en 2005 par Linus Torvalds, créateur de noyau linux, devant la nécessité de cannaliser et organiser les contributions des milliers de contributeurs de linux. C'est le gestionnaire de version le plus utilisé, et est un réel standard dans le monde du développement logiciel.
+
+        \paragraph{}
+            Git a été créé en 2005 par Linus Torvalds, créateur de noyau linux, devant la nécessité de cannaliser et organiser les contributions des milliers de contributeurs de linux. C'est le gestionnaire de version le plus utilisé, et est un réel standard dans le monde du développement logiciel.
 
         \begin{figure}[h]
             \begin{center}
@@ -66,4 +72,25 @@
     \newpage
 
     \section{Générateur de documentation Doxygen}
-        \lipsum
+        \paragraph{}
+            Doxygen est un générateur de documentation à partir du code source. Un des problèmes lié au travail de groupe et auquel git ne répond pas, est la maintanibilité et la lisibilité du code, et c'est là que doxygen apporte des solutions.
+            \\ Avec une syntaxe claire et rigoureuse de commentaires judicieusement placés sur chaque fonction et instruction utile, le code produit par une personne devient limpide pour une autre personne formée à utiliser doxygen. De plus, la documentation générée (sous format html, pdf..) permet d'avoir une vue d'ensemble sur le code, notamment grace à des graphiques représentant les intéractions entre les classes.
+
+        \begin{lstlisting}[frame=single, language=C++, caption=Exemple de  commentaire utilisant la syntaxe de doxygen] 
+/**
+ * @brief generate a Node tree representation of a tokenList
+ *
+ * @param tokens the tokenList to parse
+ * @return a Node tree representation of the tokenlist
+ */
+
+Node* generateTree(QList<Token> tokens)
+        \end{lstlisting}
+
+
+        \paragraph{}
+            Le dernier avantage, et pas des moindres, est que pour tout nouveau contributeur dans le projet, l'apprentissage de la structure du logiciel est bien plus rapide que sans documentation. Le choix ayant été fait d'avoir un programme libre, il a semblé naturel de fournir une documentation allant avec le programme.
+            
+        \paragraph{}
+            Un autre choix ayant été fait au niveau des commentaires a été de les rédiger entièrement en Anglais. Dans le monde de l'informatique, l'anglais est omniprésent: au niveau des documentations, des forums, des ressources. Commenter en français implique que la portabilité du programme ne pourra se faire qu'en millieu francophone et qu'aucune contribution ne pourra être apportée par quelqu'un ne maitrisant pas le français. De l'autre côté, l'anglais est compris pratiquement universellement. 
+        
