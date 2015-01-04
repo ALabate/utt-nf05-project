@@ -73,7 +73,7 @@ void MainWindow::memorySync()
 
                 if (currentLabel->text() != varValue)
                 {
-                    currentLabel->setText(varValue);
+                    ui->detailedList->UpdateElement(varName, varValue);
                 }
 
                 found = true;
