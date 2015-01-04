@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 #include <QString>
 #include <stdexcept>
+#include <QFileDialog>
 
 #include "about.h"
 #include "lib/parser.h"
@@ -38,6 +39,8 @@ class MainWindow : public QMainWindow
         void eval();
         void clearHist();
         void about();
+        void save();
+        void open();
 };
 
 #endif // MAINWINDOW_HPP
